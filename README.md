@@ -31,18 +31,14 @@ Project supports two dataset configurations with **clear separation**:
 
 ## 🏆 Current SOTA Results (Character Error Rate - CER)
 
-| Model | S2-on-S2 | S4-on-S2 | Best Configuration |
-|-------|----------|----------|-------------------|
-| **MDLM** | **1.61%** | **1.81%** | **🥇 SOTA - Best overall accuracy** |
-| **Transformer** | 1.95% | 1.99% | 🥈 Solid baseline performance |
-| **LSTM** | 1.56% | 1.67% | 🥉 Most efficient training |
-| **Encoder** | - | 98.44% | Experimental configuration |
+| Model | S4-on-S2 | S2-on-S2 |
+|-------|----------|----------|
+| **MDLM** | **1.61%** | **1.81%** |
+| **Transformer** | 1.91% | 1.95% |
+| **LSTM** | 1.67% | 1.99% |
+| **Encoder** | 1.56% | - |
 
-### Key Performance Insights
-- **🏆 MDLM leads with 1.61% CER** on S2-on-S2 configuration
 - **📈 Extended training (S4-on-S2)** shows marginal improvements across models
-- **⚡ LSTM** achieves competitive results with fastest training speed
-- **🎯 All core models** achieve sub-2% character error rates
 
 ## 🏗️ Project Architecture
 
@@ -93,14 +89,6 @@ The project focuses on three primary architectures, each representing different 
   - Fast inference
 - **Use Cases**: Resource-constrained environments, fast inference
 - **Training**: `python train.py --model_type lstm --epochs 100`
-
-### Core Models Comparison
-
-| Model | Complexity | Memory | Vocab Size | Best CER | Best For |
-|-------|------------|--------|------------|----------|-----------|
-| **Transformer** | O(n²) | High | 26 | 1.95% | Standard baseline, benchmarking |
-| **MDLM** | O(n²) + diffusion | High | 40 | **1.61%** | **🏆 SOTA accuracy, uncertainty quantification** |
-| **LSTM** | O(n) | Low | 26 | **1.56%** | **⚡ Fast training, production deployment** |
 
 ## 🔧 Other Models
 
