@@ -9,8 +9,8 @@
 Deep learning project for Syriac morphological analysis supporting 13 neural network architectures. Core task: sequence labeling — given Syriac character sequences, predict morphological tags for each position.
 
 ### Key Features
-- **3 Core Architectures**: Transformer, MDLM, and LSTM for different use cases
-- **5 Other Model Types**: BERT, Mamba, RetNet, Switch, and RWKV series
+- **3 Core Architectures**: Transformer (Encoder-only), MDLM, and LSTM for different use cases
+- **Other Test Model Types**: BERT, Mamba, RetNet, and so on...
 - **Dual Dataset Support**: S2 (default) and S4 (extended) datasets
 - **Complete Pipeline**: Training, validation, and data processing system
 
@@ -34,7 +34,7 @@ Project supports two dataset configurations with **clear separation**:
 | Model | S4-on-S2 | S2-on-S2 |
 |-------|----------|----------|
 | **MDLM** | **1.61%** | **1.81%** |
-| **Transformer** | 1.91% | 1.95% |
+| **Transformer (Encoder-Decoder)** | 1.91% | 1.95% |
 | **LSTM** | 1.67% | 1.99% |
 | **Encoder** | 1.56% | - |
 
