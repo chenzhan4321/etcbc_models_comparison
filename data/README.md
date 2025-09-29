@@ -16,7 +16,8 @@ data/
 │   ├── val.in/out         # 10,964 lines (same as S2)
 │   ├── test.in/out        # 10,869 lines (same as S2)
 │   └── patterns.csv       # S4 pattern mappings
-└── data_comparison/       # [Legacy] Original S4 dataset location
+└── raw_s4_on_s2/       # [Legacy] Original S4 dataset location
+└── raw_s2_on_s2/       # [Legacy] Original S2 dataset location
 ```
 
 ## ⚠️ Dataset Configurations
