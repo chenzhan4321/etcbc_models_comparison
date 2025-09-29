@@ -1,0 +1,180 @@
+2D Accuracy Analysis Results
+============================================================
+
+Combo 1 (Input✓ Output✓):
+  Samples: 62,552
+  Correct: 58,024
+  Accuracy: 92.76%
+
+  Examples:
+    1. 输入: KLHJN
+       预测: KL/-HJN
+       答案: KL/-HJN
+       状态: 正确
+
+    2. 输入: NJX>
+       预测: NJX/(J~>
+       答案: NJX/~>
+       状态: 错误
+
+    3. 输入: LJ
+       预测: L-J
+       答案: L-J
+       状态: 正确
+
+    4. 输入: KLHJN
+       预测: KL/-HJN
+       答案: KL/-HJN
+       状态: 正确
+
+    5. 输入: NJX>
+       预测: NJX/(J~>
+       答案: NJX/~>
+       状态: 错误
+
+    6. 输入: LJ
+       预测: L-J
+       答案: L-J
+       状态: 正确
+
+    7. 输入: >CR>
+       预测: >!CR(J&>[
+       答案: >!CR(J&>[
+       状态: 正确
+
+    8. 输入: NJX>
+       预测: NJX/~>
+       答案: NJX/~>
+       状态: 正确
+
+    9. 输入: LJ
+       预测: L-J
+       答案: L-J
+       状态: 正确
+
+    10. 输入: >CR>
+       预测: >CR/~>
+       答案: >!CR(J&>[
+       状态: 错误
+
+Combo 2 (Input✓ Output✗):
+  Samples: 2,248
+  Correct: 456
+  Accuracy: 20.28%
+
+  Examples:
+    1. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    2. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    3. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    4. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    5. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    6. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    7. 输入: CRJ
+       预测: CRJ[:d
+       答案: !CRJ[
+       状态: 错误
+
+    8. 输入: BMNTH
+       预测: B-MN(>=/T-H
+       答案: B-MN(>&T=/-H
+       状态: 错误
+
+    9. 输入: BMNTH
+       预测: B-MN(>=/T-H
+       答案: B-MN(>&T=/-H
+       状态: 错误
+
+    10. 输入: BMNTH
+       预测: B-MN(>=/T-H
+       答案: B-MN(>&T=/-H
+       状态: 错误
+
+Combo 3 (Input✗ Output✓):
+  Samples: 0
+  Correct: 0
+  Accuracy: 0.00%
+
+Combo 4 (Input✗ Output✗):
+  Samples: 11,283
+  Correct: 6,444
+  Accuracy: 57.11%
+
+  Examples:
+    1. 输入: WBHLJN
+       预测: W-B-HLJN
+       答案: W-B-HLJN
+       状态: 正确
+
+    2. 输入: B<JT
+       预测: B<J[T
+       答案: B<J[T
+       状态: 正确
+
+    3. 输入: DB>JN>
+       预测: D-B->JN>
+       答案: D-B->JN>
+       状态: 正确
+
+    4. 输入: JWTRN>
+       预测: JWTRN/~>
+       答案: JWTRN/~>
+       状态: 正确
+
+    5. 输入: B<JT
+       预测: B<J[T
+       答案: B<J[T
+       状态: 正确
+
+    6. 输入: DB>JN>
+       预测: D-B->JN>
+       答案: D-B->JN>
+       状态: 正确
+
+    7. 输入: JWTRN>
+       预测: JWTRN/~>
+       答案: JWTRN/~>
+       状态: 正确
+
+    8. 输入: B<JT
+       预测: B<J[T
+       答案: B<J[T
+       状态: 正确
+
+    9. 输入: DB>JN>
+       预测: D-B->JN>
+       答案: D-B->JN>
+       状态: 正确
+
+    10. 输入: JWTRN>
+       预测: JWTRN/~>
+       答案: JWTRN/~>
+       状态: 正确
+
+总体:
+  Total samples: 76,083
+  Total correct: 64,924
+  Overall accuracy: 85.33%

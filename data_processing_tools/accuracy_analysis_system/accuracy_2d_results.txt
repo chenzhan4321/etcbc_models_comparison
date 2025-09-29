@@ -1,0 +1,27 @@
+2D Accuracy Analysis Results
+============================================================
+
+Combo 1 (Input✓ Output✓):
+  Samples: 62,552
+  Correct: 58,765
+  Accuracy: 93.95%
+
+Combo 2 (Input✓ Output✗):
+  Samples: 2,248
+  Correct: 544
+  Accuracy: 24.20%
+
+Combo 3 (Input✗ Output✓):
+  Samples: 0
+  Correct: 0
+  Accuracy: 0.00%
+
+Combo 4 (Input✗ Output✗):
+  Samples: 11,283
+  Correct: 7,578
+  Accuracy: 67.16%
+
+总体:
+  Total samples: 76,083
+  Total correct: 66,887
+  Overall accuracy: 87.91%
