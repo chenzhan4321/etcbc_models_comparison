@@ -365,10 +365,3 @@ python -c "from models.core import get_vocab_size; print(f'Current vocab_size: {
 ## 📄 License
 
 This project follows open source license requirements.
-
----
-
-**Version**: 12.0.0
-**Last Updated**: September 2025
-**Architecture Support**: 13 neural network architectures (3 core + 10 other models)
-**Focus**: Syriac morphological analysis with sequence labeling

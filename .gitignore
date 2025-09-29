@@ -26,17 +26,7 @@ MANIFEST
 *.pt
 *.ckpt
 
-# Data files (large datasets)
-data/*.in
-data/*.out
-data/*.original
-data/*.reduced
-data/*.final
-
 # Training outputs and logs
-outputs/
-logs/
-runs/
 *.log
 
 # System files
