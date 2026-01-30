@@ -1,0 +1,72 @@
+[
+  {
+    "model": "encoder_s4_on_s2",
+    "total_units": 733841,
+    "total_errors": 11479,
+    "correct_units": 722362,
+    "accuracy": 98.43576469562207,
+    "line_count": 10869,
+    "error_lines": 5885,
+    "perfect_lines": 4984
+  },
+  {
+    "model": "mdlm_s4_on_s2",
+    "total_units": 733841,
+    "total_errors": 11797,
+    "correct_units": 722044,
+    "accuracy": 98.39243105795397,
+    "line_count": 10869,
+    "error_lines": 5951,
+    "perfect_lines": 4918
+  },
+  {
+    "model": "lstm_s4_on_s2",
+    "total_units": 733841,
+    "total_errors": 12276,
+    "correct_units": 721565,
+    "accuracy": 98.32715806285013,
+    "line_count": 10869,
+    "error_lines": 6039,
+    "perfect_lines": 4830
+  },
+  {
+    "model": "mdlm_s2_on_s2",
+    "total_units": 733841,
+    "total_errors": 13314,
+    "correct_units": 720527,
+    "accuracy": 98.18571052857499,
+    "line_count": 10869,
+    "error_lines": 6505,
+    "perfect_lines": 4364
+  },
+  {
+    "model": "transformer_s4_on_s2",
+    "total_units": 733841,
+    "total_errors": 13991,
+    "correct_units": 719850,
+    "accuracy": 98.09345621190421,
+    "line_count": 10869,
+    "error_lines": 5961,
+    "perfect_lines": 4908
+  },
+  {
+    "model": "transformer_s2_on_s2",
+    "total_units": 733841,
+    "total_errors": 14329,
+    "correct_units": 719512,
+    "accuracy": 98.04739718821924,
+    "line_count": 10869,
+    "error_lines": 5906,
+    "perfect_lines": 4963
+  },
+  {
+    "model": "lstm_s2_on_s2",
+    "total_units": 733841,
+    "total_errors": 14574,
+    "correct_units": 719267,
+    "accuracy": 98.01401120951269,
+    "line_count": 10869,
+    "error_lines": 6695,
+    "perfect_lines": 4174
+  }
+]

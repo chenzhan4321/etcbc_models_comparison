@@ -1,0 +1,19 @@
+============================================================
+Levenshtein Distance Evaluation - Summary
+============================================================
+
+Model: Encoder-only Transformer (d=512, L=4, H=16)
+Dataset: S2 on S2
+Number of seeds: 5
+
+Individual Results:
+  Seed  123: Char= 96.11%, Line= 41.03%, AvgDist= 2.18
+  Seed  456: Char= 96.09%, Line= 41.21%, AvgDist= 2.19
+  Seed  789: Char= 96.11%, Line= 41.10%, AvgDist= 2.18
+  Seed 2023: Char= 96.15%, Line= 41.06%, AvgDist= 2.16
+  Seed 2024: Char= 96.16%, Line= 40.39%, AvgDist= 2.15
+
+Statistics:
+  Character-level accuracy: 96.12% ± 0.03%
+  Line-level accuracy:      40.86% ± 0.29%
+  Average edit distance:    2.18 ± 0.02

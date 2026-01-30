@@ -1,0 +1,15 @@
+{
+  "name": "seed3407",
+  "total_distance": 22299,
+  "avg_distance": 2.051614683963566,
+  "char_accuracy": 0.963370342445164,
+  "line_accuracy": 0.42865028981507036,
+  "exact_matches": 4659,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4659,
+    "dist_1_5": 4996,
+    "dist_6_10": 1024,
+    "dist_gt_10": 190
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "seed42",
+  "total_distance": 21681,
+  "avg_distance": 1.9947557272978196,
+  "char_accuracy": 0.9643855058322615,
+  "line_accuracy": 0.43757475388720213,
+  "exact_matches": 4756,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4756,
+    "dist_1_5": 5012,
+    "dist_6_10": 933,
+    "dist_gt_10": 168
+  }
+}

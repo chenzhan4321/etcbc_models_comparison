@@ -1,0 +1,15 @@
+{
+  "name": "seed50",
+  "total_distance": 21483,
+  "avg_distance": 1.9765387800165608,
+  "char_accuracy": 0.9647107523543413,
+  "line_accuracy": 0.4430030361578802,
+  "exact_matches": 4815,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4815,
+    "dist_1_5": 4886,
+    "dist_6_10": 1012,
+    "dist_gt_10": 156
+  }
+}

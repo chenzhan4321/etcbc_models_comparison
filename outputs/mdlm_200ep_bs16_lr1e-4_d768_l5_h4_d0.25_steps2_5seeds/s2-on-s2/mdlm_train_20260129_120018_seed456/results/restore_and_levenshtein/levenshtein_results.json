@@ -1,0 +1,15 @@
+{
+  "name": "seed456",
+  "total_distance": 21865,
+  "avg_distance": 2.0116846075995953,
+  "char_accuracy": 0.9640832565390156,
+  "line_accuracy": 0.4352746342809826,
+  "exact_matches": 4731,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4731,
+    "dist_1_5": 4967,
+    "dist_6_10": 987,
+    "dist_gt_10": 184
+  }
+}

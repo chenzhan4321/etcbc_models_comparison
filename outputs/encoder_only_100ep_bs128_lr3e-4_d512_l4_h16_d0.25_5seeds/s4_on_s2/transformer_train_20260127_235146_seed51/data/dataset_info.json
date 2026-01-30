@@ -1,0 +1,8 @@
+{
+  "original_data_dir": "./data/s4_on_s2",
+  "timestamp": "20260127_235146",
+  "model_type": "transformer",
+  "mode": "train",
+  "max_length": 64,
+  "batch_size": 128
+}

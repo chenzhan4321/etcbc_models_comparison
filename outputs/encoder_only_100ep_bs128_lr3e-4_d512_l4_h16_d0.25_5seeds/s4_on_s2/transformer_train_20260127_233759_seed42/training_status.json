@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "error_message": null,
+  "completed_epochs": 100,
+  "total_epochs": 100,
+  "best_val_accuracy": 0.9667764111129983,
+  "best_epoch": 82,
+  "device_info": {
+    "device": "cuda",
+    "cuda_device": "NVIDIA A100-PCIE-40GB",
+    "cuda_memory_total_gb": 42.406903808,
+    "cuda_memory_allocated_gb": 0.222593024,
+    "cuda_memory_reserved_gb": 0.656408576
+  },
+  "model_info": {
+    "total_parameters": 12838729,
+    "trainable_parameters": 12838729,
+    "estimated_memory_mb": 205.419664
+  },
+  "timestamp": 1769576426.6872642
+}

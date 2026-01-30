@@ -1,0 +1,58 @@
+{
+  "dataset": "s2_on_s2",
+  "num_seeds": 5,
+  "excluded_seeds": [
+    "1024",
+    "42"
+  ],
+  "individual_results": [
+    {
+      "seed": "123",
+      "char_accuracy": 0.9611034727458199,
+      "line_accuracy": 0.410341337749563,
+      "avg_distance": 2.178581286226884,
+      "exact_matches": 4460,
+      "total_lines": 10869
+    },
+    {
+      "seed": "456",
+      "char_accuracy": 0.9608964976863145,
+      "line_accuracy": 0.4120894286502898,
+      "avg_distance": 2.19017388904223,
+      "exact_matches": 4479,
+      "total_lines": 10869
+    },
+    {
+      "seed": "789",
+      "char_accuracy": 0.9610706195617714,
+      "line_accuracy": 0.41098537123930445,
+      "avg_distance": 2.1804213819118594,
+      "exact_matches": 4467,
+      "total_lines": 10869
+    },
+    {
+      "seed": "2023",
+      "char_accuracy": 0.9615092095688184,
+      "line_accuracy": 0.4106173521023093,
+      "avg_distance": 2.1558561045174347,
+      "exact_matches": 4463,
+      "total_lines": 10869
+    },
+    {
+      "seed": "2024",
+      "char_accuracy": 0.9616422649642147,
+      "line_accuracy": 0.4039010028521483,
+      "avg_distance": 2.1484037169932835,
+      "exact_matches": 4390,
+      "total_lines": 10869
+    }
+  ],
+  "statistics": {
+    "char_accuracy_mean": 0.9612444129053876,
+    "char_accuracy_std": 0.0002826718196792818,
+    "line_accuracy_mean": 0.409586898518723,
+    "line_accuracy_std": 0.0029044381791230975,
+    "avg_distance_mean": 2.170687275738338,
+    "avg_distance_std": 0.015832352653817022
+  }
+}

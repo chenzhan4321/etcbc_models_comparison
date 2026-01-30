@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "error_message": null,
+  "completed_epochs": 50,
+  "total_epochs": 50,
+  "best_val_accuracy": 0.9685141035998751,
+  "best_epoch": 46,
+  "device_info": {
+    "device": "cuda",
+    "cuda_device": "NVIDIA GeForce RTX 4090 D",
+    "cuda_memory_total_gb": 25.262096384,
+    "cuda_memory_allocated_gb": 0.234827264,
+    "cuda_memory_reserved_gb": 0.312475648
+  },
+  "model_info": {
+    "total_parameters": 13344370,
+    "trainable_parameters": 13344370,
+    "estimated_memory_mb": 213.50992
+  },
+  "timestamp": 1769690018.004164
+}

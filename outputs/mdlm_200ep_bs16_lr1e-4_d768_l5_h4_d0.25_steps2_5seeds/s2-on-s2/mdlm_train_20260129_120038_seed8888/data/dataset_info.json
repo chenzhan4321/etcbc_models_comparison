@@ -1,0 +1,8 @@
+{
+  "original_data_dir": "./data/s2_on_s2",
+  "timestamp": "20260129_120038",
+  "model_type": "mdlm",
+  "mode": "train",
+  "max_length": 64,
+  "batch_size": 16
+}

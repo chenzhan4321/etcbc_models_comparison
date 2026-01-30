@@ -1,0 +1,15 @@
+{
+  "name": "seed789",
+  "total_distance": 22579,
+  "avg_distance": 2.077376023553225,
+  "char_accuracy": 0.9629103978684854,
+  "line_accuracy": 0.4249700984451191,
+  "exact_matches": 4619,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4619,
+    "dist_1_5": 5035,
+    "dist_6_10": 1015,
+    "dist_gt_10": 200
+  }
+}

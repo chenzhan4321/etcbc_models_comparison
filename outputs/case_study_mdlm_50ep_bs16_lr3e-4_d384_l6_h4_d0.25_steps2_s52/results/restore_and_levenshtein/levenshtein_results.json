@@ -1,0 +1,15 @@
+{
+  "name": "mdlm_seed52_recheck",
+  "total_distance": 21420,
+  "avg_distance": 1.9707424786088876,
+  "char_accuracy": 0.964814239884094,
+  "line_accuracy": 0.4500874045450363,
+  "exact_matches": 4892,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4892,
+    "dist_1_5": 4818,
+    "dist_6_10": 998,
+    "dist_gt_10": 161
+  }
+}

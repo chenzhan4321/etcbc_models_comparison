@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "error_message": null,
+  "completed_epochs": 100,
+  "total_epochs": 100,
+  "best_val_accuracy": 0.9679793516905669,
+  "best_epoch": 93,
+  "device_info": {
+    "device": "cuda",
+    "cuda_device": "Tesla V100-SXM2-32GB",
+    "cuda_memory_total_gb": 34.072559616,
+    "cuda_memory_allocated_gb": 0.226925568,
+    "cuda_memory_reserved_gb": 0.394264576
+  },
+  "model_info": {
+    "total_parameters": 12838729,
+    "trainable_parameters": 12838729,
+    "estimated_memory_mb": 205.419664
+  },
+  "timestamp": 1769542406.8055093
+}

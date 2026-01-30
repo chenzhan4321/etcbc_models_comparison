@@ -1,0 +1,25 @@
+{
+  "model_dir": "mdlm_train_20260129_184047_seed52",
+  "pred_file": "mdlm_predictions_20260129_184047.out",
+  "gold_file": "outputs/mdlm_train_20260129_184047_seed52/data/test.out",
+  "best_val_accuracy": 0.9685141035998751,
+  "best_epoch": 46,
+  "total_sequences": 10869,
+  "total_distance": 11925,
+  "avg_distance": 1.0971570521667127,
+  "std_distance": 1.3792156881124304,
+  "min_distance": 0,
+  "max_distance": 10,
+  "median_distance": 1.0,
+  "normalized_distance": 0.029447207392298537,
+  "perfect_matches": 4892,
+  "perfect_match_rate": 0.4500874045450363,
+  "total_chars": 404962,
+  "char_accuracy": 0.9705330376677318,
+  "dist_distribution": {
+    "dist_0": 4892,
+    "dist_1_5": 5857,
+    "dist_6_10": 120,
+    "dist_gt_10": 0
+  }
+}

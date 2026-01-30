@@ -1,0 +1,15 @@
+{
+  "name": "seed123",
+  "total_distance": 22185,
+  "avg_distance": 2.041126138559205,
+  "char_accuracy": 0.9635576055942402,
+  "line_accuracy": 0.43076639985279236,
+  "exact_matches": 4682,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4682,
+    "dist_1_5": 5010,
+    "dist_6_10": 994,
+    "dist_gt_10": 183
+  }
+}

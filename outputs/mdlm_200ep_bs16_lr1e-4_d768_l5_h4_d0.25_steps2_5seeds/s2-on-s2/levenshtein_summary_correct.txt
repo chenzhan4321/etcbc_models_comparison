@@ -1,0 +1,24 @@
+============================================================
+Levenshtein Distance Evaluation - CORRECTED
+============================================================
+
+Model: MDLM (Masked Discrete Language Model)
+Dataset: s2-on-s2
+Number of seeds: 5
+
+Individual Results:
+  Seed    123: Char= 96.36%, Line= 43.08%, AvgDist= 2.04
+  Seed    456: Char= 96.41%, Line= 43.53%, AvgDist= 2.01
+  Seed    789: Char= 96.29%, Line= 42.50%, AvgDist= 2.08
+  Seed   3407: Char= 96.34%, Line= 42.87%, AvgDist= 2.05
+  Seed   8888: Char= 96.42%, Line= 43.72%, AvgDist= 2.00
+
+Statistics:
+  Character-level accuracy: 96.36% ± 0.05%
+  Character Error Rate (CER): 3.64% ± 0.05%
+  Line-level accuracy:      43.14% ± 0.44%
+  Average edit distance:    2.04 ± 0.03
+
+Reproducibility Assessment:
+  - Coefficient of Variation: 0.050%
+  - Rating: EXCELLENT (CV < 0.1%)

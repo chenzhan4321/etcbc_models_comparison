@@ -1,0 +1,15 @@
+{
+  "name": "seed49",
+  "total_distance": 21039,
+  "avg_distance": 1.935688655810102,
+  "char_accuracy": 0.9654400930402173,
+  "line_accuracy": 0.4450271414113534,
+  "exact_matches": 4837,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4837,
+    "dist_1_5": 4934,
+    "dist_6_10": 941,
+    "dist_gt_10": 157
+  }
+}
