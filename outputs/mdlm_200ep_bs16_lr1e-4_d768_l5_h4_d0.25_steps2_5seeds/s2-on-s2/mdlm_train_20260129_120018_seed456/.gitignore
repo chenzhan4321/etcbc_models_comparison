@@ -1,0 +1,5 @@
+
+# allow PyTorch checkpoints
+!*.pt
+!*.pt/**
+!*.pt
