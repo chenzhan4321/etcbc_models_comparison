@@ -36,11 +36,11 @@ All models evaluated on the S2 test set (10,869 lines) using **5-seed reproducib
 
 ### Average Edit Distance (Levenshtein) - Lower is Better
 
-| Model | S4-on-S2 (Extended Training) | S2-on-S2 (Standard Training) | Improvement |
+| Model | S2-on-S2 (Extended Training) | S4-on-S2 (Standard Training) | Improvement |
 |-------|------------------------------|------------------------------|-------------|
 | **MDLM** (d=768, L=5, H=4) | 3.64% ± 0.05% | **3.42% ± 0.08%** | **0.22%** |
 | **Encoder-only Transformer** (d=512, L=4, H=16) | 3.88% ± 0.03% | **3.53% ± 0.04%** | **0.35%** |
-| **Encoder-Decoder Transformer** (d=512, H=8) | ~4.08% | ~4.00% | **-0.08%** |
+| **Encoder-Decoder Transformer** (d=512, H=8) | ~4.00% | ~4.08% | **-0.08%** |
 |                                                 |                              |                              |             |
 
 ### Key Findings
