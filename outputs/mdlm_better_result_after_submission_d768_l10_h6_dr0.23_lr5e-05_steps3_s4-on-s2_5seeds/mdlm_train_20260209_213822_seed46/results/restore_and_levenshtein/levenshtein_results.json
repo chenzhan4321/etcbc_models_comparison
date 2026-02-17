@@ -1,0 +1,15 @@
+{
+  "name": "mdlm_seed46",
+  "total_distance": 20486,
+  "avg_distance": 1.8848100101205263,
+  "char_accuracy": 0.9663484835791573,
+  "line_accuracy": 0.46692428006256326,
+  "exact_matches": 5075,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 5075,
+    "dist_1_5": 4710,
+    "dist_6_10": 918,
+    "dist_gt_10": 166
+  }
+}

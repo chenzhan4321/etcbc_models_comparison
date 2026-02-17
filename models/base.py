@@ -297,7 +297,7 @@ class BaseDiffusionModel(BaseSequenceModel):
             'dim_feedforward': 1024,
             'dropout': 0.1,
             'max_length': 128,
-            'num_timesteps': 1000,
+            'num_timesteps': 10,
             'beta_start': 0.0001,
             'beta_end': 0.02,
             'beta_schedule': 'linear',

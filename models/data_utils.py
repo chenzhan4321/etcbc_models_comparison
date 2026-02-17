@@ -1315,8 +1315,8 @@ def get_num_classes(output_files: List[str] = None) -> int:
             log_warning(f"读取patterns.csv失败: {e}", "数据统计")
     
     # 默认值
-    log_warning("❌ 无法确定类别数量，使用默认值309", "数据统计")
-    return 309
+    log_warning("❌ 无法确定类别数量，使用默认值329", "数据统计")
+    return 329
 
 
 def get_class_weights(output_files: List[str], num_classes: int) -> torch.Tensor:

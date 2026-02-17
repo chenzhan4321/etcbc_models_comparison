@@ -1,0 +1,18 @@
+============================================================
+Levenshtein Distance Evaluation Results
+============================================================
+
+Model: mdlm_seed49
+
+Statistics:
+  Total lines: 10869
+  Exact matches: 5147 (47.35%)
+  Total Levenshtein distance: 20550
+  Average distance per line: 1.89
+  Character-level accuracy: 96.62%
+
+Distance Distribution:
+  dist=0 (exact): 5147 (47.4%)
+  dist 1-5:       4591 (42.2%)
+  dist 6-10:      951 (8.7%)
+  dist >10:       180 (1.7%)

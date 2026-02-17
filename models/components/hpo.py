@@ -206,7 +206,7 @@ class HPOSearchSpace:
         if self.num_layers is None:
             self.num_layers = [3, 4, 6, 8]
         if self.num_timesteps is None:
-            self.num_timesteps = [500, 1000, 2000]
+            self.num_timesteps = [10]
         if self.diffusion_steps is None:
             self.diffusion_steps = [5, 10, 20]
         if self.max_length is None:

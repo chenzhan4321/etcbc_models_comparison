@@ -1,6 +1,6 @@
 """
-Unified model module
-Provides model implementations, core functionality and neural network components
+统一模型模块
+提供模型实现、核心功能和神经网络组件
 """
 
 from .base import (
@@ -27,15 +27,15 @@ from .cutting_edge import (
     SyriacRWKV7EfficientModel
 )
 
-# Model registry
+# 模型注册表
 MODEL_REGISTRY = {
-    # Core architectures
+    # 经典架构
     'transformer': SyriacTransformerModel,
     'bert': SyriacBERTModel,
     'lstm': SyriacLSTMModel,
     'mdlm': MDLMModel,
 
-    # Other model architectures
+    # 2023-2024前沿架构
     'mamba': SyriacMambaModel,
     'bimamba': SyriacBiMambaModel,
     'bimamba_large': SyriacBiMambaLargeModel,
@@ -44,58 +44,59 @@ MODEL_REGISTRY = {
     'switch': SyriacSwitchModel,
     'mamba_large': SyriacMambaLargeModel,
 
-    # RWKV-7 series
+    # 2025前沿架构
     'rwkv7': SyriacRWKV7Model,
     'rwkv7_large': SyriacRWKV7LargeModel,
     'rwkv7_efficient': SyriacRWKV7EfficientModel,
 }
 
 def get_model_class(model_type: str):
-    """Get model class by type"""
+    """获取模型类"""
     model_type = model_type.lower()
     if model_type not in MODEL_REGISTRY:
-        raise ValueError(f"Unsupported model type: {model_type}. Supported types: {list(MODEL_REGISTRY.keys())}")
+        raise ValueError(f"不支持的模型类型: {model_type}. 支持的类型: {list(MODEL_REGISTRY.keys())}")
     return MODEL_REGISTRY[model_type]
 
 def list_available_models():
-    """List all available models"""
+    """列出所有可用的模型"""
     return list(MODEL_REGISTRY.keys())
 
-# Re-export core and components modules for backward compatibility
+# 重新导出core和components模块以保持向后兼容
 from . import core
 from . import components
 
 __all__ = [
-    # Base classes
+    # 基类
     'BaseSequenceModel',
     'BaseTransformerModel',
     'BaseRNNModel',
     'BaseDiffusionModel',
 
-    # Core models
+    # 经典模型
     'SyriacTransformerModel',
     'SyriacBERTModel',
     'SyriacLSTMModel',
     'MDLMModel',
+    'FullMDLMModel',
 
-    # Other model architectures
+    # 前沿架构模型 (2023-2024)
     'SyriacMambaModel',
     'SyriacBiMambaModel',
     'SyriacRetNetModel',
     'SyriacSwitchModel',
     'SyriacMambaLargeModel',
 
-    # RWKV-7 series models
+    # 2025最新架构模型
     'SyriacRWKV7Model',
     'SyriacRWKV7LargeModel',
     'SyriacRWKV7EfficientModel',
 
-    # Utility functions
+    # 工具函数
     'get_model_class',
     'list_available_models',
     'MODEL_REGISTRY',
 
-    # Submodules
+    # 子模块
     'core',
     'components',
 ]

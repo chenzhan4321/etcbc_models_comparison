@@ -41,7 +41,8 @@ All models evaluated on the S2 test set (10,869 lines) using **5-seed reproducib
 | **MDLM** (d=768, L=5, H=4) | 3.64% ± 0.05% | **3.42% ± 0.08%** | **0.22%** |
 | **Encoder-only Transformer** (d=512, L=4, H=16) | 3.88% ± 0.03% | **3.53% ± 0.04%** | **0.35%** |
 | **Encoder-Decoder Transformer** (d=512, H=8) | ~4.00% | ~4.08% | **-0.08%** |
-|                                                 |                              |                              |             |
+
+Updating after Submission: MDLM reaches a better CER (**3.38% ± 0.06%**) on S4-on-S2 with the setting d=768, L=10, H=6, dr=0.23, lr=5e-05, steps=3, a 17.2% improvement in comparison to Encoder-Decoder Transformer.
 
 ### Key Findings
 - ** Extended training (S4-on-S2) consistently improves performance** across all models by 0.2-0.35% in CER

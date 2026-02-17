@@ -643,14 +643,35 @@ CUTTING_EDGE_CONFIGS = {
 
 def create_cutting_edge_model(config_name: str = 'mamba_base',
                              vocab_size: int = 26,
-                             num_classes: int = 329) -> CuttingEdgeModel:
-    """创建前沿架构模型"""
+                             num_classes: int = 329,
+                             config_overrides: Optional[Dict[str, Any]] = None) -> CuttingEdgeModel:
+    """创建前沿架构模型
+
+    Args:
+        config_name: 基础配置名称
+        vocab_size: 词汇表大小
+        num_classes: 类别数
+        config_overrides: 配置覆盖参数（如 d_model, num_layers, dropout 等）
+    """
     if config_name not in CUTTING_EDGE_CONFIGS:
         raise ValueError(f"未知配置: {config_name}. 可选: {list(CUTTING_EDGE_CONFIGS.keys())}")
 
-    config = CUTTING_EDGE_CONFIGS[config_name]
+    # 复制配置以避免修改原始配置
+    import copy
+    config = copy.deepcopy(CUTTING_EDGE_CONFIGS[config_name])
     config.vocab_size = vocab_size
     config.num_classes = num_classes
+
+    # 应用用户配置覆盖
+    if config_overrides:
+        for key, value in config_overrides.items():
+            if hasattr(config, key):
+                setattr(config, key, value)
+                log_info(f"  配置覆盖: {key} = {value}")
+            # 特殊映射：某些参数名称可能不同
+            elif key == 'num_heads' and hasattr(config, 'retention_heads'):
+                config.retention_heads = value
+                log_info(f"  配置覆盖: retention_heads = {value}")
 
     log_info(f"创建前沿架构模型: {config_name}")
     log_info(f"  模型类型: {config.model_type}")
@@ -685,11 +706,12 @@ class CuttingEdgeModelWrapper(BaseSequenceModel):
 
     def build_model(self):
         """构建前沿架构模型"""
-        # 创建前沿架构模型
+        # 创建前沿架构模型，传递用户配置覆盖参数
         self.model = create_cutting_edge_model(
             config_name=self.config_name,
             vocab_size=self.vocab_size,
-            num_classes=self.num_classes
+            num_classes=self.num_classes,
+            config_overrides=self.config  # 传递 HPO 等传入的配置参数
         )
 
         # 保存配置
