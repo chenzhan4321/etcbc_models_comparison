@@ -1,0 +1,362 @@
+{
+  "line_shared_seed_42": {
+    "tag": "enc42 vs mdlm42",
+    "total_lines": 10869,
+    "both_correct_lines": 4093,
+    "mdlm_only_correct_lines": 1024,
+    "enc_only_correct_lines": 663,
+    "neither_lines": 5089,
+    "net_line_rescue": 361,
+    "rescue_break_ratio": 1.5444947209653093,
+    "line_mcnemar_p": 0.0,
+    "enc_line_acc": 0.43757475388720213,
+    "mdlm_line_acc": 0.47078848100101206,
+    "median_positions_enc_wrong_on_rescued_lines": 1.0,
+    "mean_positions_enc_wrong_on_rescued_lines": 1.26171875
+  },
+  "line_shared_seed_49": {
+    "tag": "enc49 vs mdlm49",
+    "total_lines": 10869,
+    "both_correct_lines": 4154,
+    "mdlm_only_correct_lines": 993,
+    "enc_only_correct_lines": 683,
+    "neither_lines": 5039,
+    "net_line_rescue": 310,
+    "rescue_break_ratio": 1.4538799414348462,
+    "line_mcnemar_p": 4.418687638008123e-14,
+    "enc_line_acc": 0.4450271414113534,
+    "mdlm_line_acc": 0.47354862452847546,
+    "median_positions_enc_wrong_on_rescued_lines": 1,
+    "mean_positions_enc_wrong_on_rescued_lines": 1.2598187311178248
+  },
+  "seen_unseen": {
+    "enc": {
+      "seen_word_acc_mean": 0.9103323010957599,
+      "seen_word_acc_std": 0.000645557583976292,
+      "unseen_word_acc_mean": 0.6382950084127874,
+      "unseen_word_acc_std": 0.006431430339724855,
+      "seen_word_total": 67168,
+      "unseen_word_total": 8915
+    },
+    "mdlm": {
+      "seen_word_acc_mean": 0.9157872796569795,
+      "seen_word_acc_std": 0.0008916234394646647,
+      "unseen_word_acc_mean": 0.6601906898485699,
+      "unseen_word_acc_std": 0.004312718654850213,
+      "seen_word_total": 67168,
+      "unseen_word_total": 8915
+    },
+    "unseen_gap_mdlm_minus_enc": 0.021895681435782466,
+    "seen_gap_mdlm_minus_enc": 0.00545497856121957
+  },
+  "rare_pattern": {
+    "band_table": [
+      {
+        "band": "0:null label",
+        "gt_support": 282261,
+        "enc_recall": 0.9919613407449134,
+        "enc_std": 0.00024108885616912098,
+        "mdlm_recall": 0.9933862630685784,
+        "mdlm_std": 0.0002158784342277657,
+        "mdlm_minus_enc": 0.0014249223236649788
+      },
+      {
+        "band": "1:very-common (>=1e4)",
+        "gt_support": 102374,
+        "enc_recall": 0.9385371285678004,
+        "enc_std": 0.0007259588477933852,
+        "mdlm_recall": 0.9402270107644519,
+        "mdlm_std": 0.0006165338284218023,
+        "mdlm_minus_enc": 0.0016898821966515598
+      },
+      {
+        "band": "2:common (1e3-1e4)",
+        "gt_support": 17857,
+        "enc_recall": 0.8478019824158594,
+        "enc_std": 0.001640497735308656,
+        "mdlm_recall": 0.842235537884303,
+        "mdlm_std": 0.003536001500580216,
+        "mdlm_minus_enc": -0.005566444531556303
+      },
+      {
+        "band": "3:mid (1e2-1e3)",
+        "gt_support": 2150,
+        "enc_recall": 0.7473488372093023,
+        "enc_std": 0.005482850987271188,
+        "mdlm_recall": 0.7356279069767442,
+        "mdlm_std": 0.0035495412145747055,
+        "mdlm_minus_enc": -0.011720930232558158
+      },
+      {
+        "band": "4:rare (10-1e2)",
+        "gt_support": 243,
+        "enc_recall": 0.4576131687242798,
+        "enc_std": 0.020886547391686442,
+        "mdlm_recall": 0.4674897119341564,
+        "mdlm_std": 0.004196723879500231,
+        "mdlm_minus_enc": 0.009876543209876576
+      },
+      {
+        "band": "5:very-rare (<10)",
+        "gt_support": 77,
+        "enc_recall": 0.0,
+        "enc_std": 0.0,
+        "mdlm_recall": 0.0,
+        "mdlm_std": 0.0,
+        "mdlm_minus_enc": 0.0
+      }
+    ],
+    "per_rare_label": [
+      {
+        "label": 73,
+        "pattern": "!(J&",
+        "train_count": 869,
+        "freq_rank": 73,
+        "gt_support_in_test": 127,
+        "enc_recall": 0.7700787401574803,
+        "mdlm_recall": 0.6755905511811023,
+        "mdlm_minus_enc": -0.09448818897637795
+      },
+      {
+        "label": 87,
+        "pattern": "(N-(X",
+        "train_count": 525,
+        "freq_rank": 87,
+        "gt_support_in_test": 112,
+        "enc_recall": 0.9303571428571429,
+        "mdlm_recall": 0.9785714285714285,
+        "mdlm_minus_enc": 0.04821428571428564
+      },
+      {
+        "label": 80,
+        "pattern": "[(J=",
+        "train_count": 781,
+        "freq_rank": 80,
+        "gt_support_in_test": 103,
+        "enc_recall": 0.5980582524271845,
+        "mdlm_recall": 0.5864077669902913,
+        "mdlm_minus_enc": -0.011650485436893232
+      },
+      {
+        "label": 78,
+        "pattern": ":dp",
+        "train_count": 799,
+        "freq_rank": 78,
+        "gt_support_in_test": 102,
+        "enc_recall": 0.7058823529411765,
+        "mdlm_recall": 0.719607843137255,
+        "mdlm_minus_enc": 0.013725490196078487
+      },
+      {
+        "label": 70,
+        "pattern": "(>=/",
+        "train_count": 935,
+        "freq_rank": 70,
+        "gt_support_in_test": 96,
+        "enc_recall": 0.7208333333333333,
+        "mdlm_recall": 0.7166666666666667,
+        "mdlm_minus_enc": -0.004166666666666726
+      },
+      {
+        "label": 75,
+        "pattern": "-(>",
+        "train_count": 836,
+        "freq_rank": 75,
+        "gt_support_in_test": 92,
+        "enc_recall": 1.0,
+        "mdlm_recall": 1.0,
+        "mdlm_minus_enc": 0.0
+      },
+      {
+        "label": 77,
+        "pattern": "=[:d",
+        "train_count": 811,
+        "freq_rank": 77,
+        "gt_support_in_test": 91,
+        "enc_recall": 0.6593406593406593,
+        "mdlm_recall": 0.643956043956044,
+        "mdlm_minus_enc": -0.01538461538461537
+      },
+      {
+        "label": 74,
+        "pattern": "[/-",
+        "train_count": 840,
+        "freq_rank": 74,
+        "gt_support_in_test": 87,
+        "enc_recall": 0.8551724137931035,
+        "mdlm_recall": 0.871264367816092,
+        "mdlm_minus_enc": 0.01609195402298841
+      },
+      {
+        "label": 90,
+        "pattern": "==-",
+        "train_count": 457,
+        "freq_rank": 90,
+        "gt_support_in_test": 72,
+        "enc_recall": 0.6638888888888889,
+        "mdlm_recall": 0.6166666666666667,
+        "mdlm_minus_enc": -0.0472222222222222
+      },
+      {
+        "label": 76,
+        "pattern": "@(>&",
+        "train_count": 822,
+        "freq_rank": 76,
+        "gt_support_in_test": 65,
+        "enc_recall": 1.0,
+        "mdlm_recall": 1.0,
+        "mdlm_minus_enc": 0.0
+      },
+      {
+        "label": 69,
+        "pattern": "=/(J&",
+        "train_count": 991,
+        "freq_rank": 69,
+        "gt_support_in_test": 56,
+        "enc_recall": 0.8642857142857142,
+        "mdlm_recall": 0.8250000000000001,
+        "mdlm_minus_enc": -0.03928571428571421
+      },
+      {
+        "label": 81,
+        "pattern": "(>-(H",
+        "train_count": 698,
+        "freq_rank": 81,
+        "gt_support_in_test": 55,
+        "enc_recall": 0.8727272727272727,
+        "mdlm_recall": 0.8763636363636365,
+        "mdlm_minus_enc": 0.003636363636363688
+      },
+      {
+        "label": 86,
+        "pattern": "[-&",
+        "train_count": 526,
+        "freq_rank": 86,
+        "gt_support_in_test": 54,
+        "enc_recall": 0.7592592592592593,
+        "mdlm_recall": 0.7407407407407407,
+        "mdlm_minus_enc": -0.018518518518518517
+      },
+      {
+        "label": 95,
+        "pattern": "(J(J&",
+        "train_count": 322,
+        "freq_rank": 95,
+        "gt_support_in_test": 52,
+        "enc_recall": 0.6269230769230769,
+        "mdlm_recall": 0.6423076923076922,
+        "mdlm_minus_enc": 0.01538461538461533
+      },
+      {
+        "label": 100,
+        "pattern": "(J(>/",
+        "train_count": 309,
+        "freq_rank": 100,
+        "gt_support_in_test": 42,
+        "enc_recall": 1.0,
+        "mdlm_recall": 0.9523809523809523,
+        "mdlm_minus_enc": -0.047619047619047616
+      },
+      {
+        "label": 79,
+        "pattern": "@(S&",
+        "train_count": 790,
+        "freq_rank": 79,
+        "gt_support_in_test": 42,
+        "enc_recall": 1.0,
+        "mdlm_recall": 1.0,
+        "mdlm_minus_enc": 0.0
+      },
+      {
+        "label": 82,
+        "pattern": "==/(J~",
+        "train_count": 671,
+        "freq_rank": 82,
+        "gt_support_in_test": 41,
+        "enc_recall": 0.6487804878048781,
+        "mdlm_recall": 0.6926829268292682,
+        "mdlm_minus_enc": 0.04390243902439017
+      },
+      {
+        "label": 96,
+        "pattern": "(>/(J&",
+        "train_count": 319,
+        "freq_rank": 96,
+        "gt_support_in_test": 35,
+        "enc_recall": 0.6685714285714285,
+        "mdlm_recall": 0.6914285714285714,
+        "mdlm_minus_enc": 0.022857142857142878
+      },
+      {
+        "label": 89,
+        "pattern": "=:d",
+        "train_count": 516,
+        "freq_rank": 89,
+        "gt_support_in_test": 35,
+        "enc_recall": 0.7142857142857143,
+        "mdlm_recall": 0.6742857142857144,
+        "mdlm_minus_enc": -0.03999999999999996
+      },
+      {
+        "label": 92,
+        "pattern": "==:d",
+        "train_count": 413,
+        "freq_rank": 92,
+        "gt_support_in_test": 35,
+        "enc_recall": 0.5542857142857143,
+        "mdlm_recall": 0.5314285714285715,
+        "mdlm_minus_enc": -0.022857142857142777
+      },
+      {
+        "label": 85,
+        "pattern": "@(Z&",
+        "train_count": 592,
+        "freq_rank": 85,
+        "gt_support_in_test": 35,
+        "enc_recall": 1.0,
+        "mdlm_recall": 1.0,
+        "mdlm_minus_enc": 0.0
+      },
+      {
+        "label": 106,
+        "pattern": "(T/",
+        "train_count": 267,
+        "freq_rank": 106,
+        "gt_support_in_test": 35,
+        "enc_recall": 0.017142857142857144,
+        "mdlm_recall": 0.13714285714285715,
+        "mdlm_minus_enc": 0.12000000000000001
+      },
+      {
+        "label": 103,
+        "pattern": "=[/:d",
+        "train_count": 295,
+        "freq_rank": 103,
+        "gt_support_in_test": 34,
+        "enc_recall": 0.7941176470588235,
+        "mdlm_recall": 0.8058823529411764,
+        "mdlm_minus_enc": 0.0117647058823529
+      },
+      {
+        "label": 154,
+        "pattern": "(C[/",
+        "train_count": 66,
+        "freq_rank": 154,
+        "gt_support_in_test": 33,
+        "enc_recall": 0.5515151515151515,
+        "mdlm_recall": 0.5757575757575758,
+        "mdlm_minus_enc": 0.024242424242424263
+      },
+      {
+        "label": 72,
+        "pattern": "](N",
+        "train_count": 902,
+        "freq_rank": 72,
+        "gt_support_in_test": 32,
+        "enc_recall": 0.9125,
+        "mdlm_recall": 1.0,
+        "mdlm_minus_enc": 0.08750000000000002
+      }
+    ]
+  }
+}

@@ -1,0 +1,771 @@
+{
+  "meta": {
+    "gt_path": "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original",
+    "gt_total_lines": 10869,
+    "gt_scored_lines": 10869,
+    "n_bootstrap": 2000,
+    "rng_seed": 20260606,
+    "metric": "character-level Levenshtein (ins/del/sub cost 1), per line",
+    "cer_target_string": ".out.original (restored ETCBC surface string), NOT the raw label-digit '.out' sequence",
+    "cer_definition": "corpus CER = sum(line distances) / sum(GT line chars) = 1 - char_accuracy",
+    "unit": "per-test-line CER = line distance / line GT char count",
+    "bootstrap_method": "resample line indices with replacement (n=#scored lines, >=1000 reps, fixed seed); CER recomputed as sum(dist)/sum(gtchars) on the 5-seed-averaged per-line distances; percentile [2.5, 97.5]",
+    "caveat": "test lines are overlapping sliding windows over shared verses -> NOT i.i.d.; line-level bootstrap under-estimates variance (verse/book correlation). Reported CIs are a lower bound on true uncertainty."
+  },
+  "models": {
+    "encoder_only_s2_on_s2": {
+      "label": "Encoder-only (S2-on-S2)",
+      "dataset": "s2_on_s2",
+      "n_seeds": 5,
+      "seeds": [
+        "123",
+        "456",
+        "789",
+        "2023",
+        "2024"
+      ],
+      "per_seed_corpus_cer": [
+        0.038896527254180156,
+        0.039103502313685486,
+        0.03892938043822862,
+        0.038490790431181615,
+        0.03835773503578533
+      ],
+      "per_seed_char_accuracy": [
+        0.9611034727458199,
+        0.9608964976863145,
+        0.9610706195617714,
+        0.9615092095688184,
+        0.9616422649642147
+      ],
+      "per_seed_avg_distance": [
+        2.178581286226884,
+        2.19017388904223,
+        2.1804213819118594,
+        2.1558561045174347,
+        2.1484037169932835
+      ],
+      "per_seed_total_distance": [
+        23679.0,
+        23805.0,
+        23699.0,
+        23432.0,
+        23351.0
+      ],
+      "per_seed_exact_matches": [
+        4460,
+        4479,
+        4467,
+        4463,
+        4390
+      ],
+      "cer_5seed_mean": 0.03875558709461224,
+      "cer_across_seed_mean": 0.03875558709461224,
+      "cer_across_seed_std": 0.0003160367020632168,
+      "char_accuracy_5seed_mean": 0.9612444129053876,
+      "char_accuracy_5seed_std": 0.0003160367020632185,
+      "avg_distance_5seed_mean": 2.170687275738338,
+      "bootstrap_cer_ci95": [
+        0.03794461572320251,
+        0.03962951322310782
+      ],
+      "bootstrap_cer_se": 0.000427036851046626
+    },
+    "encoder_only_s4_on_s2": {
+      "label": "Encoder-only (S4-on-S2)",
+      "dataset": "s4_on_s2",
+      "n_seeds": 5,
+      "seeds": [
+        "42",
+        "49",
+        "50",
+        "51",
+        "52"
+      ],
+      "per_seed_corpus_cer": [
+        0.0356144941677385,
+        0.034559906959782775,
+        0.035289247645658696,
+        0.035736050948717825,
+        0.03520547202633511
+      ],
+      "per_seed_char_accuracy": [
+        0.9643855058322615,
+        0.9654400930402173,
+        0.9647107523543413,
+        0.9642639490512822,
+        0.9647945279736649
+      ],
+      "per_seed_avg_distance": [
+        1.9947557272978196,
+        1.935688655810102,
+        1.9765387800165608,
+        2.001564081332229,
+        1.9718465360198731
+      ],
+      "per_seed_total_distance": [
+        21681.0,
+        21039.0,
+        21483.0,
+        21755.0,
+        21432.0
+      ],
+      "per_seed_exact_matches": [
+        4756,
+        4837,
+        4815,
+        4790,
+        4747
+      ],
+      "cer_5seed_mean": 0.035281034349646585,
+      "cer_across_seed_mean": 0.03528103434964658,
+      "cer_across_seed_std": 0.0004593575380516934,
+      "char_accuracy_5seed_mean": 0.9647189656503535,
+      "char_accuracy_5seed_std": 0.00045935753805171335,
+      "avg_distance_5seed_mean": 1.9760787560953168,
+      "bootstrap_cer_ci95": [
+        0.034498623706498054,
+        0.03609549609081567
+      ],
+      "bootstrap_cer_se": 0.0004127776268822859
+    },
+    "mdlm_steps2_s2_on_s2": {
+      "label": "MDLM steps=2 (S2-on-S2)",
+      "dataset": "s2_on_s2",
+      "n_seeds": 5,
+      "seeds": [
+        "123",
+        "456",
+        "789",
+        "3407",
+        "8888"
+      ],
+      "per_seed_corpus_cer": [
+        0.03644239440575982,
+        0.03591674346098438,
+        0.03708960213151458,
+        0.03662965755483607,
+        0.0357557628591469
+      ],
+      "per_seed_char_accuracy": [
+        0.9635576055942402,
+        0.9640832565390156,
+        0.9629103978684854,
+        0.963370342445164,
+        0.964244237140853
+      ],
+      "per_seed_avg_distance": [
+        2.041126138559205,
+        2.0116846075995953,
+        2.077376023553225,
+        2.051614683963566,
+        2.0026681387432146
+      ],
+      "per_seed_total_distance": [
+        22185.0,
+        21865.0,
+        22579.0,
+        22299.0,
+        21767.0
+      ],
+      "per_seed_exact_matches": [
+        4682,
+        4731,
+        4619,
+        4659,
+        4752
+      ],
+      "cer_5seed_mean": 0.03636683208244835,
+      "cer_across_seed_mean": 0.036366832082448355,
+      "cer_across_seed_std": 0.000541564585323125,
+      "char_accuracy_5seed_mean": 0.9636331679175516,
+      "char_accuracy_5seed_std": 0.0005415645853231051,
+      "avg_distance_5seed_mean": 2.036893918483761,
+      "bootstrap_cer_ci95": [
+        0.03557106449017502,
+        0.03724271201771949
+      ],
+      "bootstrap_cer_se": 0.0004242190731316176
+    },
+    "mdlm_steps2_s4_on_s2": {
+      "label": "MDLM steps=2 (S4-on-S2)",
+      "dataset": "s4_on_s2",
+      "n_seeds": 5,
+      "seeds": [
+        "123",
+        "456",
+        "789",
+        "3407",
+        "8888"
+      ],
+      "per_seed_corpus_cer": [
+        0.03381413968188262,
+        0.03411310365672365,
+        0.035085557904558216,
+        0.034962358464376474,
+        0.03300102337668311
+      ],
+      "per_seed_char_accuracy": [
+        0.9661858603181174,
+        0.9658868963432763,
+        0.9649144420954417,
+        0.9650376415356235,
+        0.9669989766233169
+      ],
+      "per_seed_avg_distance": [
+        1.8939184837611556,
+        1.9106633544944338,
+        1.965130186769712,
+        1.9582298279510535,
+        1.848376115558009
+      ],
+      "per_seed_total_distance": [
+        20585.0,
+        20767.0,
+        21359.0,
+        21284.0,
+        20090.0
+      ],
+      "per_seed_exact_matches": [
+        5012,
+        4884,
+        4926,
+        4895,
+        5113
+      ],
+      "cer_5seed_mean": 0.034195236616844815,
+      "cer_across_seed_mean": 0.03419523661684482,
+      "cer_across_seed_std": 0.0008601270086838035,
+      "char_accuracy_5seed_mean": 0.9658047633831552,
+      "char_accuracy_5seed_std": 0.0008601270086838128,
+      "avg_distance_5seed_mean": 1.9152635937068727,
+      "bootstrap_cer_ci95": [
+        0.033368926107872086,
+        0.03502064874299006
+      ],
+      "bootstrap_cer_se": 0.00041651854025658133
+    },
+    "mdlm_steps3_s4_on_s2": {
+      "label": "MDLM steps=3 (S4-on-S2, post-submission HPO)",
+      "dataset": "s4_on_s2",
+      "n_seeds": 5,
+      "seeds": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "per_seed_corpus_cer": [
+        0.033488893159802816,
+        0.03419687927604723,
+        0.033651516420842714,
+        0.03404411197022188,
+        0.033756646609797804
+      ],
+      "per_seed_char_accuracy": [
+        0.9665111068401971,
+        0.9658031207239528,
+        0.9663484835791573,
+        0.9659558880297782,
+        0.9662433533902022
+      ],
+      "per_seed_avg_distance": [
+        1.875701536479897,
+        1.9153555984911215,
+        1.8848100101205263,
+        1.906799153555985,
+        1.8906983163124482
+      ],
+      "per_seed_total_distance": [
+        20387.0,
+        20818.0,
+        20486.0,
+        20725.0,
+        20550.0
+      ],
+      "per_seed_exact_matches": [
+        5117,
+        5075,
+        5075,
+        5041,
+        5147
+      ],
+      "cer_5seed_mean": 0.03382760948734249,
+      "cer_across_seed_mean": 0.03382760948734249,
+      "cer_across_seed_std": 0.000288966585673701,
+      "char_accuracy_5seed_mean": 0.9661723905126575,
+      "char_accuracy_5seed_std": 0.0002889665856736644,
+      "avg_distance_5seed_mean": 1.8946729229919956,
+      "bootstrap_cer_ci95": [
+        0.03301656625997834,
+        0.034672183825316845
+      ],
+      "bootstrap_cer_se": 0.0004193829083338318
+    },
+    "encoder_decoder_s2_on_s2": {
+      "label": "Encoder-decoder (S2-on-S2, single seed)",
+      "dataset": "s2_on_s2",
+      "n_seeds": 1,
+      "seeds": [
+        "s7"
+      ],
+      "per_seed_corpus_cer": [
+        0.040031604763054625
+      ],
+      "per_seed_char_accuracy": [
+        0.9599683952369453
+      ],
+      "per_seed_avg_distance": [
+        2.2421565921427913
+      ],
+      "per_seed_total_distance": [
+        24370.0
+      ],
+      "per_seed_exact_matches": [
+        5019
+      ],
+      "cer_5seed_mean": 0.040031604763054625,
+      "cer_across_seed_mean": 0.040031604763054625,
+      "cer_across_seed_std": 0.0,
+      "char_accuracy_5seed_mean": 0.9599683952369453,
+      "char_accuracy_5seed_std": 0.0,
+      "avg_distance_5seed_mean": 2.2421565921427913,
+      "bootstrap_cer_ci95": [
+        0.03900010277233361,
+        0.04109748893299346
+      ],
+      "bootstrap_cer_se": 0.0005315915700186602
+    }
+  },
+  "paired": {
+    "mdlm_steps2_vs_encoder_s4_on_s2": {
+      "A": "MDLM steps=2 (S4-on-S2)",
+      "B": "Encoder-only (S4-on-S2)",
+      "direction": "diff = CER(A) - CER(B); negative => A better (lower CER)",
+      "mean_perline_cer_diff": -0.0013023999374094453,
+      "mean_perline_cer_diff_ci95": [
+        -0.0016480907980244831,
+        -0.0009849776472174953
+      ],
+      "corpus_cer_diff": -0.0010857977328017701,
+      "corpus_cer_diff_ci95": [
+        -0.0014327132957618058,
+        -0.0007516027544482634
+      ],
+      "excludes_zero_perline": true,
+      "excludes_zero_corpus": true,
+      "paired_t_stat": -7.667787204966173,
+      "paired_t_p": 1.899257393086058e-14,
+      "wilcoxon_stat": 9768176.0,
+      "wilcoxon_p": 1.9113498555007214e-12,
+      "n_pairs": 10869,
+      "caveat": "per-line unit; lines overlap (sliding window over verses) so independence assumption of t/Wilcoxon and line bootstrap is violated -> p-values/CIs anti-conservative."
+    },
+    "encoder_vs_encoderdecoder_s2_on_s2": {
+      "A": "Encoder-only (S2-on-S2)",
+      "B": "Encoder-decoder (S2-on-S2, single seed)",
+      "direction": "diff = CER(A) - CER(B); negative => A better (lower CER)",
+      "mean_perline_cer_diff": -0.0008545622617593002,
+      "mean_perline_cer_diff_ci95": [
+        -0.0017284516259707533,
+        1.041556005808872e-05
+      ],
+      "corpus_cer_diff": -0.0012760176684423821,
+      "corpus_cer_diff_ci95": [
+        -0.0021695026936465376,
+        -0.00038910468167678103
+      ],
+      "excludes_zero_perline": false,
+      "excludes_zero_corpus": true,
+      "paired_t_stat": -1.9565002197081418,
+      "paired_t_p": 0.050431828702665056,
+      "wilcoxon_stat": 13825433.0,
+      "wilcoxon_p": 8.887459959019905e-07,
+      "n_pairs": 10869,
+      "caveat": "per-line unit; lines overlap (sliding window over verses) so independence assumption of t/Wilcoxon and line bootstrap is violated -> p-values/CIs anti-conservative."
+    },
+    "mdlm_steps3_vs_encoder_s4_on_s2": {
+      "A": "MDLM steps=3 (S4-on-S2, post-submission HPO)",
+      "B": "Encoder-only (S4-on-S2)",
+      "direction": "diff = CER(A) - CER(B); negative => A better (lower CER)",
+      "mean_perline_cer_diff": -0.0015361150728346942,
+      "mean_perline_cer_diff_ci95": [
+        -0.0018521244496383388,
+        -0.001215436471194628
+      ],
+      "corpus_cer_diff": -0.001453424862304098,
+      "corpus_cer_diff_ci95": [
+        -0.0017880081618818252,
+        -0.0011233931876584878
+      ],
+      "excludes_zero_perline": true,
+      "excludes_zero_corpus": true,
+      "paired_t_stat": -9.163306776196716,
+      "paired_t_p": 5.937042011387642e-20,
+      "wilcoxon_stat": 9336340.5,
+      "wilcoxon_p": 1.201545933000813e-19,
+      "n_pairs": 10869,
+      "caveat": "per-line unit; lines overlap (sliding window over verses) so independence assumption of t/Wilcoxon and line bootstrap is violated -> p-values/CIs anti-conservative."
+    }
+  },
+  "seed_disclosure": {
+    "encoder_only_s2_on_s2": {
+      "n_seeds_recorded": 5,
+      "recorded_char_accuracy_per_seed": [
+        0.9611034727458199,
+        0.9608964976863145,
+        0.9610706195617714,
+        0.9615092095688184,
+        0.9616422649642147
+      ],
+      "mean_char_accuracy_all_seeds": 0.9612444129053876,
+      "mean_char_accuracy_after_any_exclusion": 0.9612444129053876,
+      "with_equals_without": true,
+      "note": "No outlier/2-sigma rejection code exists in the repository; all seeds are used. with==without by construction."
+    },
+    "encoder_only_s4_on_s2": {
+      "n_seeds_recorded": 5,
+      "recorded_char_accuracy_per_seed": [
+        0.9643855058322615,
+        0.9654400930402173,
+        0.9647107523543413,
+        0.9642639490512822,
+        0.9647945279736649
+      ],
+      "mean_char_accuracy_all_seeds": 0.9647189656503535,
+      "mean_char_accuracy_after_any_exclusion": 0.9647189656503535,
+      "with_equals_without": true,
+      "note": "No outlier/2-sigma rejection code exists in the repository; all seeds are used. with==without by construction."
+    },
+    "mdlm_steps2_s2_on_s2": {
+      "n_seeds_recorded": 5,
+      "recorded_char_accuracy_per_seed": [
+        0.9635576055942402,
+        0.9640832565390156,
+        0.9629103978684854,
+        0.963370342445164,
+        0.964244237140853
+      ],
+      "mean_char_accuracy_all_seeds": 0.9636331679175516,
+      "mean_char_accuracy_after_any_exclusion": 0.9636331679175516,
+      "with_equals_without": true,
+      "note": "No outlier/2-sigma rejection code exists in the repository; all seeds are used. with==without by construction."
+    },
+    "mdlm_steps2_s4_on_s2": {
+      "n_seeds_recorded": 5,
+      "recorded_char_accuracy_per_seed": [
+        0.9661858603181174,
+        0.9658868963432763,
+        0.9649144420954417,
+        0.9650376415356235,
+        0.9669989766233169
+      ],
+      "mean_char_accuracy_all_seeds": 0.9658047633831552,
+      "mean_char_accuracy_after_any_exclusion": 0.9658047633831552,
+      "with_equals_without": true,
+      "note": "No outlier/2-sigma rejection code exists in the repository; all seeds are used. with==without by construction."
+    },
+    "mdlm_steps3_s4_on_s2": {
+      "n_seeds_recorded": 5,
+      "recorded_char_accuracy_per_seed": [
+        0.9665111068401971,
+        0.9658031207239528,
+        0.9663484835791573,
+        0.9659558880297782,
+        0.9662433533902022
+      ],
+      "mean_char_accuracy_all_seeds": 0.9661723905126575,
+      "mean_char_accuracy_after_any_exclusion": 0.9661723905126575,
+      "with_equals_without": true,
+      "note": "No outlier/2-sigma rejection code exists in the repository; all seeds are used. with==without by construction."
+    }
+  },
+  "reproducibility_check": {
+    "encoder_only_s2_on_s2": {
+      "per_seed": [
+        {
+          "seed": "123",
+          "recorded_char_accuracy": 0.9611034727458199,
+          "recomputed_char_accuracy": 0.9611034727458199,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 23679,
+          "recomputed_total_distance": 23679,
+          "recorded_exact": 4460,
+          "recomputed_exact": 4460
+        },
+        {
+          "seed": "456",
+          "recorded_char_accuracy": 0.9608964976863145,
+          "recomputed_char_accuracy": 0.9608964976863145,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 23805,
+          "recomputed_total_distance": 23805,
+          "recorded_exact": 4479,
+          "recomputed_exact": 4479
+        },
+        {
+          "seed": "789",
+          "recorded_char_accuracy": 0.9610706195617714,
+          "recomputed_char_accuracy": 0.9610706195617714,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 23699,
+          "recomputed_total_distance": 23699,
+          "recorded_exact": 4467,
+          "recomputed_exact": 4467
+        },
+        {
+          "seed": "2023",
+          "recorded_char_accuracy": 0.9615092095688184,
+          "recomputed_char_accuracy": 0.9615092095688184,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 23432,
+          "recomputed_total_distance": 23432,
+          "recorded_exact": 4463,
+          "recomputed_exact": 4463
+        },
+        {
+          "seed": "2024",
+          "recorded_char_accuracy": 0.9616422649642147,
+          "recomputed_char_accuracy": 0.9616422649642147,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 23351,
+          "recomputed_total_distance": 23351,
+          "recorded_exact": 4390,
+          "recomputed_exact": 4390
+        }
+      ],
+      "max_abs_err_char_acc": 0.0,
+      "all_total_distance_exact": true,
+      "all_exact_matches_exact": true
+    },
+    "encoder_only_s4_on_s2": {
+      "per_seed": [
+        {
+          "seed": "42",
+          "recorded_char_accuracy": 0.9643855058322615,
+          "recomputed_char_accuracy": 0.9643855058322615,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21681,
+          "recomputed_total_distance": 21681,
+          "recorded_exact": 4756,
+          "recomputed_exact": 4756
+        },
+        {
+          "seed": "49",
+          "recorded_char_accuracy": 0.9654400930402173,
+          "recomputed_char_accuracy": 0.9654400930402173,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21039,
+          "recomputed_total_distance": 21039,
+          "recorded_exact": 4837,
+          "recomputed_exact": 4837
+        },
+        {
+          "seed": "50",
+          "recorded_char_accuracy": 0.9647107523543413,
+          "recomputed_char_accuracy": 0.9647107523543413,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21483,
+          "recomputed_total_distance": 21483,
+          "recorded_exact": 4815,
+          "recomputed_exact": 4815
+        },
+        {
+          "seed": "51",
+          "recorded_char_accuracy": 0.9642639490512822,
+          "recomputed_char_accuracy": 0.9642639490512822,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21755,
+          "recomputed_total_distance": 21755,
+          "recorded_exact": 4790,
+          "recomputed_exact": 4790
+        },
+        {
+          "seed": "52",
+          "recorded_char_accuracy": 0.9647945279736649,
+          "recomputed_char_accuracy": 0.9647945279736649,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21432,
+          "recomputed_total_distance": 21432,
+          "recorded_exact": 4747,
+          "recomputed_exact": 4747
+        }
+      ],
+      "max_abs_err_char_acc": 0.0,
+      "all_total_distance_exact": true,
+      "all_exact_matches_exact": true
+    },
+    "mdlm_steps2_s2_on_s2": {
+      "per_seed": [
+        {
+          "seed": "123",
+          "recorded_char_accuracy": 0.9635576055942402,
+          "recomputed_char_accuracy": 0.9635576055942402,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 22185,
+          "recomputed_total_distance": 22185,
+          "recorded_exact": 4682,
+          "recomputed_exact": 4682
+        },
+        {
+          "seed": "456",
+          "recorded_char_accuracy": 0.9640832565390156,
+          "recomputed_char_accuracy": 0.9640832565390156,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21865,
+          "recomputed_total_distance": 21865,
+          "recorded_exact": 4731,
+          "recomputed_exact": 4731
+        },
+        {
+          "seed": "789",
+          "recorded_char_accuracy": 0.9629103978684854,
+          "recomputed_char_accuracy": 0.9629103978684854,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 22579,
+          "recomputed_total_distance": 22579,
+          "recorded_exact": 4619,
+          "recomputed_exact": 4619
+        },
+        {
+          "seed": "3407",
+          "recorded_char_accuracy": 0.963370342445164,
+          "recomputed_char_accuracy": 0.963370342445164,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 22299,
+          "recomputed_total_distance": 22299,
+          "recorded_exact": 4659,
+          "recomputed_exact": 4659
+        },
+        {
+          "seed": "8888",
+          "recorded_char_accuracy": 0.964244237140853,
+          "recomputed_char_accuracy": 0.964244237140853,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21767,
+          "recomputed_total_distance": 21767,
+          "recorded_exact": 4752,
+          "recomputed_exact": 4752
+        }
+      ],
+      "max_abs_err_char_acc": 0.0,
+      "all_total_distance_exact": true,
+      "all_exact_matches_exact": true
+    },
+    "mdlm_steps2_s4_on_s2": {
+      "per_seed": [
+        {
+          "seed": "123",
+          "recorded_char_accuracy": 0.9661858603181174,
+          "recomputed_char_accuracy": 0.9661858603181174,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20585,
+          "recomputed_total_distance": 20585,
+          "recorded_exact": 5012,
+          "recomputed_exact": 5012
+        },
+        {
+          "seed": "456",
+          "recorded_char_accuracy": 0.9658868963432763,
+          "recomputed_char_accuracy": 0.9658868963432763,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20767,
+          "recomputed_total_distance": 20767,
+          "recorded_exact": 4884,
+          "recomputed_exact": 4884
+        },
+        {
+          "seed": "789",
+          "recorded_char_accuracy": 0.9649144420954417,
+          "recomputed_char_accuracy": 0.9649144420954417,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21359,
+          "recomputed_total_distance": 21359,
+          "recorded_exact": 4926,
+          "recomputed_exact": 4926
+        },
+        {
+          "seed": "3407",
+          "recorded_char_accuracy": 0.9650376415356235,
+          "recomputed_char_accuracy": 0.9650376415356235,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 21284,
+          "recomputed_total_distance": 21284,
+          "recorded_exact": 4895,
+          "recomputed_exact": 4895
+        },
+        {
+          "seed": "8888",
+          "recorded_char_accuracy": 0.9669989766233169,
+          "recomputed_char_accuracy": 0.9669989766233169,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20090,
+          "recomputed_total_distance": 20090,
+          "recorded_exact": 5113,
+          "recomputed_exact": 5113
+        }
+      ],
+      "max_abs_err_char_acc": 0.0,
+      "all_total_distance_exact": true,
+      "all_exact_matches_exact": true
+    },
+    "mdlm_steps3_s4_on_s2": {
+      "per_seed": [
+        {
+          "seed": "r1",
+          "recorded_char_accuracy": 0.9665111068401971,
+          "recomputed_char_accuracy": 0.9665111068401971,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20387,
+          "recomputed_total_distance": 20387,
+          "recorded_exact": 5117,
+          "recomputed_exact": 5117
+        },
+        {
+          "seed": "r2",
+          "recorded_char_accuracy": 0.9658031207239528,
+          "recomputed_char_accuracy": 0.9658031207239528,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20818,
+          "recomputed_total_distance": 20818,
+          "recorded_exact": 5075,
+          "recomputed_exact": 5075
+        },
+        {
+          "seed": "r3",
+          "recorded_char_accuracy": 0.9663484835791573,
+          "recomputed_char_accuracy": 0.9663484835791573,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20486,
+          "recomputed_total_distance": 20486,
+          "recorded_exact": 5075,
+          "recomputed_exact": 5075
+        },
+        {
+          "seed": "r4",
+          "recorded_char_accuracy": 0.9659558880297782,
+          "recomputed_char_accuracy": 0.9659558880297782,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20725,
+          "recomputed_total_distance": 20725,
+          "recorded_exact": 5041,
+          "recomputed_exact": 5041
+        },
+        {
+          "seed": "r5",
+          "recorded_char_accuracy": 0.9662433533902022,
+          "recomputed_char_accuracy": 0.9662433533902022,
+          "abs_err_char_acc": 0.0,
+          "recorded_total_distance": 20550,
+          "recomputed_total_distance": 20550,
+          "recorded_exact": 5147,
+          "recomputed_exact": 5147
+        }
+      ],
+      "max_abs_err_char_acc": 0.0,
+      "all_total_distance_exact": true,
+      "all_exact_matches_exact": true
+    }
+  }
+}

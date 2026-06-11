@@ -1,0 +1,230 @@
+{
+  "n_lines": 10869,
+  "gt_total_chars": 608769,
+  "gt_total_words": 76083,
+  "overall_primary_seed42": {
+    "MDLM": {
+      "cer_pct": 3.3488893159802817,
+      "err_chars": 20387,
+      "exact_line_acc": 0.47078848100101206,
+      "exact_word_acc": 0.8842448378744266,
+      "word_total": 76083,
+      "editops": {
+        "insert": 7681,
+        "delete": 10419,
+        "replace": 2287,
+        "total": 20387,
+        "insert_pct": 37.675969980870164,
+        "delete_pct": 51.10609702261245,
+        "replace_pct": 11.217932996517389
+      },
+      "length": {
+        "lines_pred_shorter": 3040,
+        "lines_pred_longer": 2261,
+        "lines_same_length": 5568,
+        "lines_len_dev_gt_50pct": 0,
+        "mean_abs_len_diff_chars": 1.1936700708436838
+      }
+    },
+    "ENC": {
+      "cer_pct": 3.56144941677385,
+      "err_chars": 21681,
+      "exact_line_acc": 0.43757475388720213,
+      "exact_word_acc": 0.8737825795512795,
+      "word_total": 76083,
+      "editops": {
+        "insert": 9013,
+        "delete": 10354,
+        "replace": 2314,
+        "total": 21681,
+        "insert_pct": 41.57096074904294,
+        "delete_pct": 47.756099810894334,
+        "replace_pct": 10.672939440062727
+      },
+      "length": {
+        "lines_pred_shorter": 2989,
+        "lines_pred_longer": 2625,
+        "lines_same_length": 5255,
+        "lines_len_dev_gt_50pct": 0,
+        "mean_abs_len_diff_chars": 1.2530131566841476
+      }
+    },
+    "ED": {
+      "cer_pct": 4.077572938175235,
+      "err_chars": 24823,
+      "exact_line_acc": 0.45155948109301686,
+      "exact_word_acc": 0.882404742189451,
+      "word_total": 76083,
+      "editops": {
+        "insert": 11410,
+        "delete": 10154,
+        "replace": 3259,
+        "total": 24823,
+        "insert_pct": 45.96543528179511,
+        "delete_pct": 40.90561173105588,
+        "replace_pct": 13.128952987149015
+      },
+      "length": {
+        "lines_pred_shorter": 2575,
+        "lines_pred_longer": 2783,
+        "lines_same_length": 5511,
+        "lines_len_dev_gt_50pct": 0,
+        "mean_abs_len_diff_chars": 1.3077560033121722
+      }
+    }
+  },
+  "family_cer": {
+    "MDLM_family_cer_mean": 3.382760948734249,
+    "MDLM_family_cer_std": 0.02584595715169654,
+    "ENC_family_cer_mean": 3.5281034349646583,
+    "ENC_family_cer_std": 0.04108618724242123,
+    "ED_single_cer": 4.077572938175235
+  },
+  "line_error_overlap": {
+    "n_err_MDLM": 5752,
+    "n_err_ENC": 6113,
+    "n_err_ED": 5961,
+    "all_three": 3986,
+    "MDLM_and_ENC": 5089,
+    "MDLM_and_ED": 4273,
+    "ENC_and_ED": 4492,
+    "MDLM_only": 376,
+    "ENC_only": 518,
+    "ED_only": 1182,
+    "union": 7958
+  },
+  "word_error_overlap": {
+    "n_err_MDLM": 8807,
+    "n_err_ENC": 9603,
+    "n_err_ED": 8947,
+    "all_three": 4254,
+    "MDLM_and_ENC": 7019,
+    "MDLM_and_ED": 4730,
+    "ENC_and_ED": 5123,
+    "MDLM_only": 1312,
+    "ENC_only": 1715,
+    "ED_only": 3348,
+    "union": 14739
+  },
+  "seen_unseen": {
+    "MDLM": {
+      "seen_word_acc": 0.914512863268223,
+      "unseen_word_acc": 0.6561974200785193,
+      "seen_total": 67168,
+      "unseen_total": 8915,
+      "lines_skipped_token_mismatch": 0
+    },
+    "ENC": {
+      "seen_word_acc": 0.9067413053835159,
+      "unseen_word_acc": 0.6254627033090298,
+      "seen_total": 67168,
+      "unseen_total": 8915,
+      "lines_skipped_token_mismatch": 0
+    },
+    "ED": {
+      "seen_word_acc": 0.9123838732729871,
+      "unseen_word_acc": 0.6565339315759955,
+      "seen_total": 67168,
+      "unseen_total": 8915,
+      "lines_skipped_token_mismatch": 0
+    }
+  },
+  "error_by_length": {
+    "MDLM": [
+      {
+        "range": "[20,40)",
+        "n_lines": 366,
+        "cer_pct": 2.88682745825603,
+        "line_error_rate_pct": 37.15846994535519
+      },
+      {
+        "range": "[40,60)",
+        "n_lines": 6791,
+        "cer_pct": 3.032803380961964,
+        "line_error_rate_pct": 49.47724930054484
+      },
+      {
+        "range": "[60,80)",
+        "n_lines": 3548,
+        "cer_pct": 3.7841005329478086,
+        "line_error_rate_pct": 60.40022547914318
+      },
+      {
+        "range": "[80,120)",
+        "n_lines": 164,
+        "cer_pct": 4.4038039502560355,
+        "line_error_rate_pct": 68.90243902439025
+      }
+    ],
+    "ENC": [
+      {
+        "range": "[20,40)",
+        "n_lines": 366,
+        "cer_pct": 3.4805194805194803,
+        "line_error_rate_pct": 44.80874316939891
+      },
+      {
+        "range": "[40,60)",
+        "n_lines": 6791,
+        "cer_pct": 3.2766006382428197,
+        "line_error_rate_pct": 52.34869680459432
+      },
+      {
+        "range": "[60,80)",
+        "n_lines": 3548,
+        "cer_pct": 3.9261058880895146,
+        "line_error_rate_pct": 63.923337091319056
+      },
+      {
+        "range": "[80,120)",
+        "n_lines": 164,
+        "cer_pct": 4.6525237746891,
+        "line_error_rate_pct": 76.82926829268293
+      }
+    ],
+    "ED": [
+      {
+        "range": "[20,40)",
+        "n_lines": 366,
+        "cer_pct": 3.74025974025974,
+        "line_error_rate_pct": 43.98907103825137
+      },
+      {
+        "range": "[40,60)",
+        "n_lines": 6791,
+        "cer_pct": 3.8360693442198777,
+        "line_error_rate_pct": 51.40627300839346
+      },
+      {
+        "range": "[60,80)",
+        "n_lines": 3548,
+        "cer_pct": 4.352977407461269,
+        "line_error_rate_pct": 61.44306651634724
+      },
+      {
+        "range": "[80,120)",
+        "n_lines": 164,
+        "cer_pct": 5.84491587417703,
+        "line_error_rate_pct": 78.65853658536585
+      }
+    ]
+  },
+  "errored_word_length": {
+    "MDLM": {
+      "mean_errored_word_len": 8.9382309526513,
+      "median_errored_word_len": 9,
+      "n_errored_words": 8807
+    },
+    "ENC": {
+      "mean_errored_word_len": 8.91221493283349,
+      "median_errored_word_len": 8,
+      "n_errored_words": 9603
+    },
+    "ED": {
+      "mean_errored_word_len": 8.897060467195708,
+      "median_errored_word_len": 8,
+      "n_errored_words": 8947
+    },
+    "_corpus_mean_word_len": 7.144237214620874
+  }
+}

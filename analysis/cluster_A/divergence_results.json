@@ -1,0 +1,818 @@
+{
+  "shared_seed_42": {
+    "tag": "enc_seed42 vs mdlm_seed42",
+    "total_positions": 404962,
+    "both_correct": 390086,
+    "mdlm_only_correct": 3354,
+    "enc_only_correct": 2730,
+    "both_wrong": 8792,
+    "net_correction": 624,
+    "correction_break_ratio": 1.2285714285714286,
+    "mcnemar_p": 1.3322676295501878e-15,
+    "enc_acc": 0.9700070623910392,
+    "mdlm_acc": 0.9715479477086739,
+    "fix_by_family": {
+      "null (no boundary)": 977,
+      "verbal-stem []": 626,
+      "lexeme-end /": 542,
+      "affix/enclitic (&": 437,
+      "vowel/diacritic =~@": 282,
+      "emphatic/restored-! (!!,!)": 259,
+      "prefix -": 140,
+      "determiner :d": 88,
+      "other": 3
+    },
+    "break_by_family": {
+      "null (no boundary)": 592,
+      "verbal-stem []": 537,
+      "affix/enclitic (&": 486,
+      "lexeme-end /": 459,
+      "vowel/diacritic =~@": 270,
+      "prefix -": 161,
+      "emphatic/restored-! (!!,!)": 124,
+      "determiner :d": 77,
+      "other": 24
+    },
+    "fix_by_pattern_top": [
+      {
+        "label": 0,
+        "pattern": "",
+        "count": 977
+      },
+      {
+        "label": 4,
+        "pattern": "/~",
+        "count": 247
+      },
+      {
+        "label": 7,
+        "pattern": "[/",
+        "count": 215
+      },
+      {
+        "label": 6,
+        "pattern": "!",
+        "count": 202
+      },
+      {
+        "label": 2,
+        "pattern": "/",
+        "count": 188
+      },
+      {
+        "label": 11,
+        "pattern": "/(J~",
+        "count": 187
+      },
+      {
+        "label": 3,
+        "pattern": "[",
+        "count": 165
+      },
+      {
+        "label": 12,
+        "pattern": "=",
+        "count": 136
+      },
+      {
+        "label": 1,
+        "pattern": "-",
+        "count": 122
+      },
+      {
+        "label": 9,
+        "pattern": "~",
+        "count": 83
+      },
+      {
+        "label": 19,
+        "pattern": ":d",
+        "count": 70
+      },
+      {
+        "label": 15,
+        "pattern": "=/~",
+        "count": 54
+      },
+      {
+        "label": 16,
+        "pattern": "[:d",
+        "count": 51
+      },
+      {
+        "label": 8,
+        "pattern": "&",
+        "count": 47
+      },
+      {
+        "label": 26,
+        "pattern": "==",
+        "count": 41
+      }
+    ],
+    "break_by_pattern_top": [
+      {
+        "label": 0,
+        "pattern": "",
+        "count": 592
+      },
+      {
+        "label": 11,
+        "pattern": "/(J~",
+        "count": 201
+      },
+      {
+        "label": 4,
+        "pattern": "/~",
+        "count": 198
+      },
+      {
+        "label": 2,
+        "pattern": "/",
+        "count": 162
+      },
+      {
+        "label": 3,
+        "pattern": "[",
+        "count": 148
+      },
+      {
+        "label": 7,
+        "pattern": "[/",
+        "count": 135
+      },
+      {
+        "label": 12,
+        "pattern": "=",
+        "count": 135
+      },
+      {
+        "label": 1,
+        "pattern": "-",
+        "count": 125
+      },
+      {
+        "label": 6,
+        "pattern": "!",
+        "count": 87
+      },
+      {
+        "label": 9,
+        "pattern": "~",
+        "count": 74
+      },
+      {
+        "label": 19,
+        "pattern": ":d",
+        "count": 71
+      },
+      {
+        "label": 8,
+        "pattern": "&",
+        "count": 40
+      },
+      {
+        "label": 5,
+        "pattern": "/-",
+        "count": 36
+      },
+      {
+        "label": 28,
+        "pattern": "!(>]",
+        "count": 30
+      },
+      {
+        "label": 23,
+        "pattern": "=~",
+        "count": 29
+      }
+    ],
+    "fix_confusion_top": [
+      {
+        "enc_pred": "=",
+        "gt": "",
+        "count": 217
+      },
+      {
+        "enc_pred": "/(J~",
+        "gt": "/~",
+        "count": 197
+      },
+      {
+        "enc_pred": "/~",
+        "gt": "/(J~",
+        "count": 172
+      },
+      {
+        "enc_pred": "",
+        "gt": "=",
+        "count": 120
+      },
+      {
+        "enc_pred": "!",
+        "gt": "",
+        "count": 108
+      },
+      {
+        "enc_pred": "[",
+        "gt": "[/",
+        "count": 106
+      },
+      {
+        "enc_pred": "&",
+        "gt": "",
+        "count": 95
+      },
+      {
+        "enc_pred": "",
+        "gt": "!",
+        "count": 94
+      },
+      {
+        "enc_pred": ":d",
+        "gt": "",
+        "count": 83
+      },
+      {
+        "enc_pred": "",
+        "gt": "/",
+        "count": 82
+      },
+      {
+        "enc_pred": "=~",
+        "gt": "~",
+        "count": 75
+      },
+      {
+        "enc_pred": "[/",
+        "gt": "[",
+        "count": 73
+      },
+      {
+        "enc_pred": "",
+        "gt": ":d",
+        "count": 57
+      },
+      {
+        "enc_pred": "/",
+        "gt": "",
+        "count": 55
+      },
+      {
+        "enc_pred": "=!",
+        "gt": "!",
+        "count": 55
+      }
+    ],
+    "line_net_positive": 2145,
+    "line_net_negative": 1693,
+    "line_net_zero": 7031
+  },
+  "shared_seed_49": {
+    "tag": "enc_seed49 vs mdlm_seed49",
+    "total_positions": 404962,
+    "both_correct": 390396,
+    "mdlm_only_correct": 3080,
+    "enc_only_correct": 2807,
+    "both_wrong": 8679,
+    "net_correction": 273,
+    "correction_break_ratio": 1.0972568578553616,
+    "mcnemar_p": 0.0003925444374484055,
+    "enc_acc": 0.9709627076120723,
+    "mdlm_acc": 0.9716368449385374,
+    "fix_by_family": {
+      "null (no boundary)": 845,
+      "lexeme-end /": 568,
+      "verbal-stem []": 529,
+      "affix/enclitic (&": 450,
+      "vowel/diacritic =~@": 277,
+      "emphatic/restored-! (!!,!)": 233,
+      "prefix -": 124,
+      "determiner :d": 48,
+      "other": 6
+    },
+    "break_by_family": {
+      "verbal-stem []": 614,
+      "null (no boundary)": 555,
+      "lexeme-end /": 510,
+      "affix/enclitic (&": 487,
+      "vowel/diacritic =~@": 252,
+      "emphatic/restored-! (!!,!)": 140,
+      "prefix -": 114,
+      "determiner :d": 89,
+      "other": 46
+    },
+    "fix_by_pattern_top": [
+      {
+        "label": 0,
+        "pattern": "",
+        "count": 845
+      },
+      {
+        "label": 4,
+        "pattern": "/~",
+        "count": 262
+      },
+      {
+        "label": 2,
+        "pattern": "/",
+        "count": 202
+      },
+      {
+        "label": 6,
+        "pattern": "!",
+        "count": 184
+      },
+      {
+        "label": 11,
+        "pattern": "/(J~",
+        "count": 184
+      },
+      {
+        "label": 3,
+        "pattern": "[",
+        "count": 172
+      },
+      {
+        "label": 7,
+        "pattern": "[/",
+        "count": 167
+      },
+      {
+        "label": 12,
+        "pattern": "=",
+        "count": 127
+      },
+      {
+        "label": 1,
+        "pattern": "-",
+        "count": 103
+      },
+      {
+        "label": 9,
+        "pattern": "~",
+        "count": 76
+      },
+      {
+        "label": 15,
+        "pattern": "=/~",
+        "count": 48
+      },
+      {
+        "label": 26,
+        "pattern": "==",
+        "count": 46
+      },
+      {
+        "label": 19,
+        "pattern": ":d",
+        "count": 39
+      },
+      {
+        "label": 8,
+        "pattern": "&",
+        "count": 39
+      },
+      {
+        "label": 31,
+        "pattern": "(W",
+        "count": 35
+      }
+    ],
+    "break_by_pattern_top": [
+      {
+        "label": 0,
+        "pattern": "",
+        "count": 555
+      },
+      {
+        "label": 3,
+        "pattern": "[",
+        "count": 201
+      },
+      {
+        "label": 4,
+        "pattern": "/~",
+        "count": 191
+      },
+      {
+        "label": 11,
+        "pattern": "/(J~",
+        "count": 185
+      },
+      {
+        "label": 2,
+        "pattern": "/",
+        "count": 183
+      },
+      {
+        "label": 7,
+        "pattern": "[/",
+        "count": 149
+      },
+      {
+        "label": 12,
+        "pattern": "=",
+        "count": 119
+      },
+      {
+        "label": 6,
+        "pattern": "!",
+        "count": 90
+      },
+      {
+        "label": 1,
+        "pattern": "-",
+        "count": 77
+      },
+      {
+        "label": 19,
+        "pattern": ":d",
+        "count": 75
+      },
+      {
+        "label": 9,
+        "pattern": "~",
+        "count": 73
+      },
+      {
+        "label": 8,
+        "pattern": "&",
+        "count": 71
+      },
+      {
+        "label": 5,
+        "pattern": "/-",
+        "count": 49
+      },
+      {
+        "label": 27,
+        "pattern": ":p",
+        "count": 46
+      },
+      {
+        "label": 15,
+        "pattern": "=/~",
+        "count": 42
+      }
+    ],
+    "fix_confusion_top": [
+      {
+        "enc_pred": "/(J~",
+        "gt": "/~",
+        "count": 225
+      },
+      {
+        "enc_pred": "=",
+        "gt": "",
+        "count": 170
+      },
+      {
+        "enc_pred": "/~",
+        "gt": "/(J~",
+        "count": 162
+      },
+      {
+        "enc_pred": "",
+        "gt": "=",
+        "count": 122
+      },
+      {
+        "enc_pred": "[",
+        "gt": "[/",
+        "count": 99
+      },
+      {
+        "enc_pred": ":d",
+        "gt": "",
+        "count": 84
+      },
+      {
+        "enc_pred": "&",
+        "gt": "",
+        "count": 83
+      },
+      {
+        "enc_pred": "!",
+        "gt": "",
+        "count": 79
+      },
+      {
+        "enc_pred": "[/",
+        "gt": "[",
+        "count": 72
+      },
+      {
+        "enc_pred": "/",
+        "gt": "",
+        "count": 71
+      },
+      {
+        "enc_pred": "=~",
+        "gt": "~",
+        "count": 71
+      },
+      {
+        "enc_pred": "",
+        "gt": "!",
+        "count": 70
+      },
+      {
+        "enc_pred": "=!",
+        "gt": "!",
+        "count": 66
+      },
+      {
+        "enc_pred": "",
+        "gt": "/",
+        "count": 64
+      },
+      {
+        "enc_pred": "-!",
+        "gt": "-",
+        "count": 42
+      }
+    ],
+    "line_net_positive": 2000,
+    "line_net_negative": 1761,
+    "line_net_zero": 7108
+  },
+  "ensemble_majority": {
+    "tag": "enc 5-seed majority vs mdlm 5-seed majority",
+    "total_positions": 404962,
+    "both_correct": 391570,
+    "mdlm_only_correct": 2352,
+    "enc_only_correct": 1964,
+    "both_wrong": 9076,
+    "net_correction": 388,
+    "correction_break_ratio": 1.1975560081466394,
+    "mcnemar_p": 3.8445766570305295e-09,
+    "enc_acc": 0.9717800682533176,
+    "mdlm_acc": 0.9727381828418469,
+    "fix_by_family": {
+      "null (no boundary)": 678,
+      "verbal-stem []": 421,
+      "lexeme-end /": 381,
+      "affix/enclitic (&": 318,
+      "emphatic/restored-! (!!,!)": 195,
+      "vowel/diacritic =~@": 188,
+      "prefix -": 117,
+      "determiner :d": 51,
+      "other": 3
+    },
+    "break_by_family": {
+      "verbal-stem []": 404,
+      "affix/enclitic (&": 383,
+      "lexeme-end /": 326,
+      "null (no boundary)": 316,
+      "vowel/diacritic =~@": 254,
+      "emphatic/restored-! (!!,!)": 118,
+      "determiner :d": 70,
+      "prefix -": 64,
+      "other": 29
+    },
+    "fix_by_pattern_top": [
+      {
+        "label": 0,
+        "pattern": "",
+        "count": 678
+      },
+      {
+        "label": 4,
+        "pattern": "/~",
+        "count": 193
+      },
+      {
+        "label": 6,
+        "pattern": "!",
+        "count": 157
+      },
+      {
+        "label": 7,
+        "pattern": "[/",
+        "count": 136
+      },
+      {
+        "label": 3,
+        "pattern": "[",
+        "count": 125
+      },
+      {
+        "label": 11,
+        "pattern": "/(J~",
+        "count": 120
+      },
+      {
+        "label": 2,
+        "pattern": "/",
+        "count": 113
+      },
+      {
+        "label": 1,
+        "pattern": "-",
+        "count": 107
+      },
+      {
+        "label": 12,
+        "pattern": "=",
+        "count": 81
+      },
+      {
+        "label": 9,
+        "pattern": "~",
+        "count": 61
+      },
+      {
+        "label": 19,
+        "pattern": ":d",
+        "count": 43
+      },
+      {
+        "label": 15,
+        "pattern": "=/~",
+        "count": 41
+      },
+      {
+        "label": 42,
+        "pattern": "(J[/",
+        "count": 34
+      },
+      {
+        "label": 8,
+        "pattern": "&",
+        "count": 33
+      },
+      {
+        "label": 31,
+        "pattern": "(W",
+        "count": 31
+      }
+    ],
+    "break_by_pattern_top": [
+      {
+        "label": 0,
+        "pattern": "",
+        "count": 316
+      },
+      {
+        "label": 11,
+        "pattern": "/(J~",
+        "count": 153
+      },
+      {
+        "label": 2,
+        "pattern": "/",
+        "count": 132
+      },
+      {
+        "label": 12,
+        "pattern": "=",
+        "count": 126
+      },
+      {
+        "label": 4,
+        "pattern": "/~",
+        "count": 123
+      },
+      {
+        "label": 3,
+        "pattern": "[",
+        "count": 114
+      },
+      {
+        "label": 7,
+        "pattern": "[/",
+        "count": 110
+      },
+      {
+        "label": 6,
+        "pattern": "!",
+        "count": 72
+      },
+      {
+        "label": 9,
+        "pattern": "~",
+        "count": 71
+      },
+      {
+        "label": 19,
+        "pattern": ":d",
+        "count": 66
+      },
+      {
+        "label": 8,
+        "pattern": "&",
+        "count": 40
+      },
+      {
+        "label": 36,
+        "pattern": "-!",
+        "count": 35
+      },
+      {
+        "label": 1,
+        "pattern": "-",
+        "count": 34
+      },
+      {
+        "label": 5,
+        "pattern": "/-",
+        "count": 29
+      },
+      {
+        "label": 27,
+        "pattern": ":p",
+        "count": 29
+      }
+    ],
+    "fix_confusion_top": [
+      {
+        "enc_pred": "/(J~",
+        "gt": "/~",
+        "count": 170
+      },
+      {
+        "enc_pred": "=",
+        "gt": "",
+        "count": 154
+      },
+      {
+        "enc_pred": "/~",
+        "gt": "/(J~",
+        "count": 112
+      },
+      {
+        "enc_pred": "&",
+        "gt": "",
+        "count": 86
+      },
+      {
+        "enc_pred": "",
+        "gt": "=",
+        "count": 78
+      },
+      {
+        "enc_pred": "",
+        "gt": "!",
+        "count": 72
+      },
+      {
+        "enc_pred": "[",
+        "gt": "[/",
+        "count": 71
+      },
+      {
+        "enc_pred": "=~",
+        "gt": "~",
+        "count": 56
+      },
+      {
+        "enc_pred": "!",
+        "gt": "",
+        "count": 56
+      },
+      {
+        "enc_pred": "[/",
+        "gt": "[",
+        "count": 54
+      },
+      {
+        "enc_pred": "=!",
+        "gt": "!",
+        "count": 46
+      },
+      {
+        "enc_pred": "/",
+        "gt": "",
+        "count": 45
+      },
+      {
+        "enc_pred": "",
+        "gt": "/",
+        "count": 45
+      },
+      {
+        "enc_pred": ":d",
+        "gt": "",
+        "count": 43
+      },
+      {
+        "enc_pred": ":p",
+        "gt": "",
+        "count": 41
+      }
+    ],
+    "line_net_positive": 1680,
+    "line_net_negative": 1336,
+    "line_net_zero": 7853
+  },
+  "cross_all_25_pairings": {
+    "n_pairings": 25,
+    "net_correction_mean": 453,
+    "net_correction_min": 76,
+    "net_correction_max": 660,
+    "net_correction_all_positive": true,
+    "mdlm_only_mean": 3215.28,
+    "enc_only_mean": 2762.28
+  }
+}

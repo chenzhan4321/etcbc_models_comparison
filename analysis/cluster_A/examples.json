@@ -1,0 +1,291 @@
+{
+  "seed": "42",
+  "n_lines_mdlm_right_enc_wrong": 1024,
+  "n_with_unseen_error_word": 355,
+  "n_with_structural_marker": 712,
+  "n_robust_under_majority": 494,
+  "examples": [
+    {
+      "line": 154,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "XJL> WTWQP> MRJMJN LB> WMN TRJHWN DXLTH",
+      "GT_restored": "XJL/~> W-TWQP/~> M!(>]R(W&JM[/JN LB/~> W-MN TR/J=-HWN DXL(>/T-H",
+      "MDLM_restored": "XJL/~> W-TWQP/~> M!(>]R(W&JM[/JN LB/~> W-MN TR/J=-HWN DXL(>/T-H",
+      "encoder_restored": "XJL/~> W-TWQP/~> M!(>]R(W&JM[/JN:dp LB/~> W-MN TR/J=-HWN DXL(>/T-H",
+      "GT_segmentation": "XJL/~> W-TWQP/~> M!(>]R(W&JM[/JN LB/~> W-MN TR/J=-HWN DXL(>/T-H",
+      "MDLM_segmentation": "XJL/~> W-TWQP/~> M!(>]R(W&JM[/JN LB/~> W-MN TR/J=-HWN DXL(>/T-H",
+      "encoder_segmentation": "XJL/~> W-TWQP/~> M!(>]R(W&JM[/JN:dp LB/~> W-MN TR/J=-HWN DXL(>/T-H",
+      "error_words_detail": [
+        {
+          "word": "MRJMJN",
+          "gt_labels": [
+            28,
+            20,
+            0,
+            7,
+            0,
+            0
+          ],
+          "enc_labels": [
+            28,
+            20,
+            0,
+            7,
+            0,
+            78
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 687,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "LWTJ WNQWM WNQR> BCMH DMRJ> >LHH WNNJP",
+      "GT_restored": "LWT-J W-N!QWM[ W-N!QR(J&>[ B-CM/-H D-MRJ>/ >LH/-H W-N!(>]N(W&JP[",
+      "MDLM_restored": "LWT-J W-N!QWM[ W-N!QR(J&>[ B-CM/-H D-MRJ>/ >LH/-H W-N!(>]N(W&JP[",
+      "encoder_restored": "LWT-J W-N!QWM[ W-N=!QR(J&>[ B-CM/-H D-MRJ>/ >LH/-H W-N!(>]N(W&JP[",
+      "GT_segmentation": "LWT-J W-N!QWM[ W-N!QR(J&>[ B-CM/-H D-MRJ>/ >LH/-H W-N!(>]N(W&JP[",
+      "MDLM_segmentation": "LWT-J W-N!QWM[ W-N!QR(J&>[ B-CM/-H D-MRJ>/ >LH/-H W-N!(>]N(W&JP[",
+      "encoder_segmentation": "LWT-J W-N!QWM[ W-N=!QR(J&>[ B-CM/-H D-MRJ>/ >LH/-H W-N!(>]N(W&JP[",
+      "error_words_detail": [
+        {
+          "word": "WNQR>",
+          "gt_labels": [
+            1,
+            6,
+            0,
+            10,
+            3
+          ],
+          "enc_labels": [
+            1,
+            44,
+            0,
+            10,
+            3
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 1171,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "DTPTX >JDK L>XWK MSKN> WLBJC> DB>R<K WKD",
+      "GT_restored": "D-T!PTX[ &>JD/-K L->X&W/-K MSKN/~> W-L-BJC=/~> D-B->R</-K W-KD",
+      "MDLM_restored": "D-T!PTX[ &>JD/-K L->X&W/-K MSKN/~> W-L-BJC=/~> D-B->R</-K W-KD",
+      "encoder_restored": "D-T=!PTX[ &>JD/-K L->X&W/-K MSKN/~> W-L-BJC=/~> D-B->R</-K W-KD",
+      "GT_segmentation": "D-T!PTX[ >JD/-K L->X&W/-K MSKN/~> W-L-BJC=/~> D-B->R</-K W-KD",
+      "MDLM_segmentation": "D-T!PTX[ >JD/-K L->X&W/-K MSKN/~> W-L-BJC=/~> D-B->R</-K W-KD",
+      "encoder_segmentation": "D-T=!PTX[ >JD/-K L->X&W/-K MSKN/~> W-L-BJC=/~> D-B->R</-K W-KD",
+      "error_words_detail": [
+        {
+          "word": "DTPTX",
+          "gt_labels": [
+            1,
+            6,
+            0,
+            0,
+            3
+          ],
+          "enc_labels": [
+            1,
+            44,
+            0,
+            0,
+            3
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 1802,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "WXD DN<BD MDM DCPJR WRXMJNN LH WR<JNN",
+      "GT_restored": "W-XD/ D-N!<BD[ MDM/ D-CPJR/ W-RXM[/J(N-(XNN L-H W-R<(J[/J(N-(XNN",
+      "MDLM_restored": "W-XD/ D-N!<BD[ MDM/ D-CPJR/ W-RXM[/J(N-(XNN L-H W-R<(J[/J(N-(XNN",
+      "encoder_restored": "W-XD/ D-N!<BD[ MDM/ D-CPJR/ W-RXM[/J(N-(XNN L-H W-R<(J[/J(N-(XN=[/N",
+      "GT_segmentation": "W-XD/ D-N!<BD[ MDM/ D-CPJR/ W-RXM[/J(N-(XNN L-H W-R<(J[/J(N-(XNN",
+      "MDLM_segmentation": "W-XD/ D-N!<BD[ MDM/ D-CPJR/ W-RXM[/J(N-(XNN L-H W-R<(J[/J(N-(XNN",
+      "encoder_segmentation": "W-XD/ D-N!<BD[ MDM/ D-CPJR/ W-RXM[/J(N-(XNN L-H W-R<(J[/J(N-(XN=[/N",
+      "error_words_detail": [
+        {
+          "word": "WR<JNN",
+          "gt_labels": [
+            1,
+            0,
+            42,
+            87,
+            0,
+            0
+          ],
+          "enc_labels": [
+            1,
+            0,
+            42,
+            87,
+            49,
+            0
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 2058,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "<DM> LLJX WPLCTJ> QMW LMQVLH W>YLXT <LWHJ",
+      "GT_restored": "<DM> L-LJX/ W-PLCTJ/(J~> Q(WM[W L-M!QVL[/-H W->]YLX[T== <L&W-HJ",
+      "MDLM_restored": "<DM> L-LJX/ W-PLCTJ/(J~> Q(WM[W L-M!QVL[/-H W->]YLX[T== <L&W-HJ",
+      "encoder_restored": "<DM> L-LJX[/:p W-PLCTJ/(J~> Q(WM[W L-M!QVL[/-H W->]YLX[T== <L&W-HJ",
+      "GT_segmentation": "<DM> L-LJX/ W-PLCTJ/(J~> Q(WM[W L-M!QVL[/-H W->]YLX[T== <L&W-HJ",
+      "MDLM_segmentation": "<DM> L-LJX/ W-PLCTJ/(J~> Q(WM[W L-M!QVL[/-H W->]YLX[T== <L&W-HJ",
+      "encoder_segmentation": "<DM> L-LJX[/:p W-PLCTJ/(J~> Q(WM[W L-M!QVL[/-H W->]YLX[T== <L&W-HJ",
+      "error_words_detail": [
+        {
+          "word": "LLJX",
+          "gt_labels": [
+            1,
+            0,
+            0,
+            2
+          ],
+          "enc_labels": [
+            1,
+            0,
+            0,
+            40
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 2171,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "HWJT DKJR LKPN> BJWMJ SB<> WMSKNWT> W<NWJWT>",
+      "GT_restored": "HWJ[T= DK&JR[/:p L-KPN/~> B-JWM/J SB<=/~> W-MSKNW/T~> W-<NWJW/T~>",
+      "MDLM_restored": "HWJ[T= DK&JR[/:p L-KPN/~> B-JWM/J SB<=/~> W-MSKNW/T~> W-<NWJW/T~>",
+      "encoder_restored": "HWJ[T= DKJR[/:p L-KPN/~> B-JWM/J SB<=/~> W-MSKNW/T~> W-<NWJW/T~>",
+      "GT_segmentation": "HWJ[T= DK&JR[/:p L-KPN/~> B-JWM/J SB<=/~> W-MSKNW/T~> W-<NWJW/T~>",
+      "MDLM_segmentation": "HWJ[T= DK&JR[/:p L-KPN/~> B-JWM/J SB<=/~> W-MSKNW/T~> W-<NWJW/T~>",
+      "encoder_segmentation": "HWJ[T= DKJR[/:p L-KPN/~> B-JWM/J SB<=/~> W-MSKNW/T~> W-<NWJW/T~>",
+      "error_words_detail": [
+        {
+          "word": "DKJR",
+          "gt_labels": [
+            0,
+            8,
+            0,
+            40
+          ],
+          "enc_labels": [
+            0,
+            0,
+            0,
+            40
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 2773,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "JWMJN M> DXML >NT MN >DR> WMN",
+      "GT_restored": "JWM/JN M> D-XML[/ >NT MN >DR/~> W-MN",
+      "MDLM_restored": "JWM/JN M> D-XML[/ >NT MN >DR/~> W-MN",
+      "encoder_restored": "JWM/JN M> D-XML[/ >NT MN >DR/(J~> W-MN",
+      "GT_segmentation": "JWM/JN M> D-XML[/ >NT MN >DR/~> W-MN",
+      "MDLM_segmentation": "JWM/JN M> D-XML[/ >NT MN >DR/~> W-MN",
+      "encoder_segmentation": "JWM/JN M> D-XML[/ >NT MN >DR/(J~> W-MN",
+      "error_words_detail": [
+        {
+          "word": ">DR>",
+          "gt_labels": [
+            0,
+            0,
+            4,
+            0
+          ],
+          "enc_labels": [
+            0,
+            0,
+            11,
+            0
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    },
+    {
+      "line": 2866,
+      "robust_under_5seed_majority": true,
+      "unseen_error_word": true,
+      "structural_marker_involved": true,
+      "n_encoder_error_positions": 1,
+      "input_consonantal": "BXKMT> WMTLBDN B>WMNWT> W>N HD> HJ KLH",
+      "GT_restored": "B-XKM(>/T~> W-M!(>T@LBD[/N B->WMNW/T~> W->N HD> HJ= KL/-H=",
+      "MDLM_restored": "B-XKM(>/T~> W-M!(>T@LBD[/N B->WMNW/T~> W->N HD> HJ= KL/-H=",
+      "encoder_restored": "B-XKM(>/T~> W-M!(>T@LBD[/N:d B->WMNW/T~> W->N HD> HJ= KL/-H=",
+      "GT_segmentation": "B-XKM(>/T~> W-M!(>T@LBD[/N B->WMNW/T~> W->N HD> HJ= KL/-H=",
+      "MDLM_segmentation": "B-XKM(>/T~> W-M!(>T@LBD[/N B->WMNW/T~> W->N HD> HJ= KL/-H=",
+      "encoder_segmentation": "B-XKM(>/T~> W-M!(>T@LBD[/N:d B->WMNW/T~> W->N HD> HJ= KL/-H=",
+      "error_words_detail": [
+        {
+          "word": "WMTLBDN",
+          "gt_labels": [
+            1,
+            21,
+            14,
+            0,
+            0,
+            7,
+            0
+          ],
+          "enc_labels": [
+            1,
+            21,
+            14,
+            0,
+            0,
+            7,
+            19
+          ],
+          "unseen": true,
+          "structural": true
+        }
+      ]
+    }
+  ]
+}
