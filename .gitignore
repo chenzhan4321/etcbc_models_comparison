@@ -65,3 +65,22 @@ venv.bak/
 *.temp
 *.bak
 *.orig
+
+# =====================================================================
+# Material that is not part of the published study (kept local only).
+# Per-clone exploratory scripts/data are additionally listed in
+# .git/info/exclude (which is not tracked, hence not published).
+# =====================================================================
+# Scratch experiment / output directories
+/experiments/
+/cer_preds/
+/results/
+/logs/
+/models_1_revision/
+# Local HPC job launchers (cluster-specific paths)
+/run_*.sh
+/submit_*.sh
+# Re-downloadable upstream raw data and tiny local fixtures
+/data/raw_ssi_morphology_v2/
+/data/_mini/
+/data/_mini_seq2seq/

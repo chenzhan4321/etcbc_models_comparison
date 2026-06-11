@@ -1,5 +1,11 @@
 # Hyperparameter Optimization (HPO) Component User Guide
 
+> **Scope note.** This is a general-purpose HPO utility that the codebase supports
+> for many architectures. The **paper** only tunes and reports the encoder-only
+> classifier, the MDLM, and the (matched) encoder–decoder baseline — see
+> `README.md` and `hpo_seq2seq.py`. The other architectures listed below are
+> exploratory and are **not part of the study**.
+
 Hyperparameter tuning and model comparison system supporting all 13 neural network architectures.
 
 ## 🎯 Features

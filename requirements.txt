@@ -1,4 +1,5 @@
 torch>=1.9.0
+pytorch-crf>=0.7.2  # CRF head for the BiLSTM-CRF / Encoder+CRF baselines (--use_crf)
 numpy>=1.21.0
 matplotlib>=3.4.0
 seaborn>=0.11.0

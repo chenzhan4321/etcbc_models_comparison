@@ -1,299 +1,307 @@
-# SyriacML: Neural Networks for Syriac Morphological Analysis
+# A Structure-First Paradigm for Classical Syriac Morphological Parsing
 
-![Version](https://img.shields.io/badge/version-12.0.0-blue.svg)
-![Python](https://img.shields.io/badge/python-3.8+-brightgreen.svg)
-![License](https://img.shields.io/badge/license-Open%20Source-green.svg)
+Reference implementation and reproduction package for the paper
 
-##  Project Overview
+> **A Structure-First Paradigm for Morphological Parsing: Synthesizing Discrete
+> Representation and Diffusion Model.**
 
-Deep learning project for Syriac morphological analysis supporting 13 neural network architectures. **Core task**: sequence labeling — given Syriac character sequences, predict morphological tags for each position.
+The work reformulates ETCBC-style Classical Syriac morphological *restoration*
+from open-ended string generation into a **fixed-length classification** problem,
+and shows that this *structure-first* reframing — not raw data volume — is what
+lets a family of discretized models, including a **Masked Diffusion Language
+Model (MDLM)**, clearly outperform the prior generative encoder–decoder baseline
+on the identical target test set.
 
-### Key Features
-- **2 Core Architectures**: Transformer (Encoder-only), MDLM (Masked Diffusion)
-- **10 Experimental Architectures**: BERT, Mamba, BiMamba, RetNet, Switch, RWKV-7 (3 variants) for research
-- **Dual Dataset Support**: S2 (default) and S4 (extended) datasets with consistent test sets
-- **Production-Ready Pipeline**: Complete training, validation, evaluation, and deployment system
-- **Reproducible Results**: Multi-seed experiments with detailed statistical analysis
-
-##  Dataset System
-
-The project supports two dataset configurations with **strict separation** for fair comparison:
-
-| Configuration | Training Data | Test Data | Training Size | Path |
-|---------------|---------------|-----------|---------------|------|
-| **S2-on-S2** (default) | S2 | S2 | 50,649 lines | `data/s2_on_s2/` |
-| **S4-on-S2** (extended) | S4 | S2 | 97,048 lines | `data/s4_on_s2/` |
-
-### Dataset Details
-- **S2-on-S2**: Standard configuration using S2 dataset for both training and testing
-- **S4-on-S2**: Extended training with S4 data (1.92× more samples), evaluated on consistent S2 test set
-- **Validation & Test**: Both configurations use identical validation (10,964) and test (10,869) sets from S2
-- **Classes**: S2 has 309 classes; S4 training includes ~350 classes (40 additional classes for extended coverage)
-
-##  Performance Results
-
-All models evaluated on the S2 test set (10,869 lines) using **5-seed reproducibility experiments**.
-
-### Average Edit Distance (Levenshtein) - Lower is Better
-
-| Model | S2-on-S2 (Extended Training) | S4-on-S2 (Standard Training) | Improvement |
-|-------|------------------------------|------------------------------|-------------|
-| **MDLM** (d=768, L=5, H=4) | 3.64% ± 0.05% | **3.42% ± 0.08%** | **0.22%** |
-| **Encoder-only Transformer** (d=512, L=4, H=16) | 3.88% ± 0.03% | **3.53% ± 0.04%** | **0.35%** |
-| **Encoder-Decoder Transformer** (d=512, H=8) | ~4.00% | ~4.08% | **-0.08%** |
-
-Updating after Submission: MDLM reaches a better CER (**3.38% ± 0.06%**) on S4-on-S2 with the setting d=768, L=10, H=6, dr=0.23, lr=5e-05, steps=3, a 17.2% improvement in comparison to Encoder-Decoder Transformer.
-
-### Key Findings
-- ** Extended training (S4-on-S2) consistently improves performance** across all models by 0.2-0.35% in CER
-- ** MDLM achieves best character-level accuracy** (96.58%) and lowest CER (3.42%) on S4-on-S2
-- ** Encoder-only Transformer offers best balance** of performance (3.53% CER) and efficiency
-- ** High reproducibility** across seeds: CV < 0.1% for all core models (EXCELLENT rating)
-- ** Line-level accuracy shows larger gains** from extended training (+2.5-3.2 percentage points)
-
-##  Evaluation Reports
-
-Detailed evaluation results are available in the `report/` directory:
-
-```
-report/
-├── encoder_only_100ep_bs128_lr3e-4_d512_l4_h16_d0.25_5seeds/
-│   ├── s2_on_s2/
-│   │   ├── levenshtein_summary.txt                  # Character: 96.12% ± 0.03%, CER: 3.88%
-│   │   └── transformer_train_TIMESTAMP_seed*/       # Individual seed results
-│   └── s4_on_s2/
-│       ├── levenshtein_summary.txt                  # Character: 96.47% ± 0.04%, CER: 3.53%
-│       └── transformer_train_TIMESTAMP_seed*/       # Individual seed results
-│
-├── mdlm_200ep_bs16_lr1e-4_d768_l5_h4_d0.25_steps2_5seeds/
-│   ├── s2-on-s2/
-│   │   ├── levenshtein_summary_correct.txt          # Character: 96.36% ± 0.05%, CER: 3.64%
-│   │   └── mdlm_train_TIMESTAMP_seed*/              # Individual seed results
-│   └── s4-on-s2/
-│       ├── levenshtein_summary_correct.txt          # Character: 96.58% ± 0.08%, CER: 3.42%
-│       └── mdlm_train_TIMESTAMP_seed*/              # Individual seed results
-│
-├── encoder_decoder_30ep_bs128_lr1e-4_emb512_h8_d0.1_b3_s7/
-│   ├── s2_on_s2/
-│   │   └── results/                                 # Character: ~96.00%, CER: ~4.00%
-│   └── s4_on_s4 (not included)/
-│       └── results/                                 # Character: ~96.20%, CER: ~3.80%
-│
-└── case_study_mdlm_50ep_bs16_lr3e-4_d384_l6_h4_d0.25_steps2_s52/
-    ├── results/
-    │   ├── levenshtein_correct.txt                  # Single-seed case study
-    │   ├── token_vs_char_accuracy_analysis.md       # Token-level vs character-level analysis
-    │   └── levenshtein_detailed_analysis.md         # Detailed error analysis
-    └── data/patterns.csv
-```
-
-### Report Structure
-- **levenshtein_summary.txt / levenshtein_summary_correct.txt**: Aggregated statistics across all seeds
-  - Character-level accuracy and CER
-  - Line-level accuracy (exact match rate)
-  - Average Levenshtein edit distance
-  - Per-seed breakdown with mean and standard deviation
-  - Reproducibility assessment (Coefficient of Variation)
-- **Individual seed directories**: Complete results for each random seed
-  - Model outputs (.out.original, .out.reduced, .out.final, .out)
-  - Levenshtein distance calculations
-  - Training history and checkpoints
-- **Case studies**: In-depth analysis of specific model configurations
-
-##  Project Architecture
-
-### Directory Structure
-```
-etcbc_models/
-├── models/                      # Model definitions (pure Python code)
-│   ├── core/                    # Core utilities (device, logging, vocabulary)
-│   ├── components/              # Reusable neural network components
-│   ├── base.py                  # Base model classes
-│   ├── mdlm.py                  # MDLM (Masked Diffusion) implementation
-│   ├── cutting_edge.py          # RWKV-7, Mamba, RetNet implementations
-│   └── model_factory.py         # Model factory for dynamic instantiation
-├── outputs/                     # Training results and model checkpoints
-├── report/                      # Evaluation reports and analysis
-├── data/                        # Training data and preprocessing scripts
-├── data_processing_tools/       # Data analysis and processing utilities
-├── reproducibility/             # Multi-seed reproducibility experiments
-├── runs/                        # TensorBoard logs (excluded from git)
-└── logs/                        # Training logs (excluded from git)
-```
-
-### Core Modules
-- **`train.py`**: Main training script supporting all 13 architectures
-- **`train_hpo.py`**: Hyperparameter optimization (HPO) with Optuna
-- **`inference.py`**: Production inference script with CLI
-- **`models/`**: Model implementation package with MODEL_REGISTRY
-- **`models/data_utils.py`**: Data loading and preprocessing (default: S2 dataset)
-- **`models/model_factory.py`**: Factory pattern for model instantiation
-- **`models/config_manager.py`**: Centralized configuration management
-- **`data_processing_tools/`**: Data post-processing and accuracy analysis
-
-##  Core Model Architectures
-
-The project focuses on **three primary architectures**, each representing different paradigms:
-
-###  Transformer (Encoder-Only)
-**Standard attention-based sequence labeling model**
-- **Architecture**: Multi-head self-attention with sinusoidal positional encoding
-- **Complexity**: O(n²) time and memory
-- **Vocabulary**: 26 characters (basic Syriac character set: 1 space + 25 letters)
-- **Configuration**: d=512, L=4, H=16, dropout=0.25
-- **Key Features**:
-  - Parallel processing of entire sequences
-  - Global attention mechanism captures long-range dependencies
-  - Strong baseline performance with good efficiency
-- **Performance**: 3.53% CER (S4-on-S2), 3.88% CER (S2-on-S2)
-- **Use Cases**: Production baseline, standard benchmark, resource-constrained deployments
-- **Training**:
-  ```bash
-  python train.py --model_type transformer --epochs 100 --batch_size 128 \
-      --d_model 512 --num_layers 4 --num_heads 16 --dropout 0.25
-  ```
-
-###  MDLM (Masked Diffusion Language Model)
-**Discrete diffusion model for iterative sequence refinement**
-- **Architecture**: Transformer-based diffusion with discrete masking and denoising
-- **Complexity**: O(n²) time with T diffusion steps (T=2 in production)
-- **Vocabulary**: 40 characters (extended set: 26 basic + 10 digits + 4 special tokens)
-- **Configuration**: d=768, L=5, H=4, dropout=0.25, timesteps=2
-- **Key Features**:
-  - Iterative refinement through forward diffusion and reverse denoising
-  - Handles morphological ambiguity and uncertainty naturally
-  - Generation capabilities for data augmentation
-  - Discrete masking with learnable noise schedule
-- **Performance**: 3.42% CER (S4-on-S2), 3.64% CER (S2-on-S2) — **Best character accuracy**
-- **Use Cases**: High-quality morphological analysis, uncertainty quantification, research
-- **Training**:
-  ```bash
-  python train.py --model_type mdlm --epochs 200 --batch_size 16 \
-      --d_model 768 --num_layers 5 --num_heads 4 --dropout 0.25 --num_timesteps 2
-  ```
-
-##  Experimental Architectures
-
-Additional architectures available for research and experimentation:
-
-| Architecture | Key Innovation | Time Complexity | Status |
-|--------------|----------------|-----------------|--------|
-| **LSTM** | Long Short-Term Memory | O(n) | Experimental |
-| **Mamba** | State-space models with selective scanning | O(n) | Experimental |
-| **BiMamba** | Bidirectional Mamba | O(n) | Experimental |
-| **RetNet** | Retention mechanism for parallel training | O(n) | Experimental |
-| **Switch** | Mixture of Experts (MoE) | O(n²) | Experimental |
-| **RWKV-7** | Linear attention with time-mixing | O(n) | Experimental |
-| **RWKV-7 Large** | Scaled-up RWKV-7 | O(n) | Experimental |
-| **RWKV-7 Efficient** | Memory-optimized RWKV-7 | O(n) | Experimental |
-
-**Quick Start with Experimental Models:**
-
-```bash
-python train.py --model_type bert --epochs 30 --batch_size 32
-python train.py --model_type mamba --epochs 50 --batch_size 32
-python train.py --model_type rwkv7 --epochs 50 --batch_size 16
-python train.py --model_type retnet --epochs 60 --batch_size 32
-```
-
-##  Data Processing System
-
-### Character Encoding
-- **Basic Set**: 26 Syriac characters (1 space + 25 letters)
-  - Used by: Transformer (encoder-only), LSTM, experimental models
-- **Extended Set**: 40 characters (26 basic + 10 digits + 4 special tokens)
-  - Used by: MDLM (requires extended vocabulary for masking)
-  - Special tokens: `[MASK]`, `[PAD]`, `[UNK]`, `[CLS]`
-
-### Data Post-processing Pipeline
-```
-Model Raw Output (.out.original)
-    ↓ [Simplification]
-    data_processing_tools/decompose/01_out_original_reducer.py
-    ↓
-Reduced Format (.out.reduced)
-    ↓ [Transformation]
-    data_processing_tools/decompose/03_convert_reduced_to_final.py
-    ↓
-Final Format (.out.final)
-    ↓ [Standardization]
-    data_processing_tools/decompose/04_convert_final_to_out.py
-    ↓
-Standard Output (.out)  ← Used for accuracy evaluation
-```
-
-### Evaluation Metrics
-
-#### Character Error Rate (CER) = Average Edit Distance
-```
-CER = (Substitutions + Insertions + Deletions) / Total_Characters × 100%
-```
-Primary metric for model comparison. Lower is better.
-
-### Data Directory Structure
-```
-data/
-├── s2_on_s2/                    # Default configuration
-│   ├── train.in                 # Training inputs (50,649 lines)
-│   ├── train.out                # Training labels
-│   ├── val.in                   # Validation inputs (10,964 lines)
-│   ├── val.out                  # Validation labels
-│   ├── test.in                  # Test inputs (10,869 lines)
-│   ├── test.out                 # Test labels
-│   └── patterns.csv             # 309 morphological patterns
-├── s4_on_s2/                    # Extended training configuration
-│   ├── train.in                 # Training inputs (97,048 lines)
-│   ├── train.out                # Training labels
-│   ├── val.in                   # Same as S2 (10,964 lines)
-│   ├── val.out                  # Same as S2
-│   ├── test.in                  # Same as S2 (10,869 lines)
-│   ├── test.out                 # Same as S2
-│   └── patterns.csv             # ~350 morphological patterns
-└── data_processing_tools/
-    ├── decompose/               # Output format conversion
-    ├── accuracy_analysis_system/ # Accuracy computation
-    ├── levenshtein/             # Edit distance evaluation
-    └── compare_word_level_correctness/ # Word-level metrics
-```
-
-##  Key Technical Details
-
-### Vocab Size Matching
-- **Transformer (encoder-only)**: 26 characters
-- **LSTM**: 26 characters
-- **MDLM**: 40 characters (extended vocabulary required for masking)
-- **Experimental models**: Most use 26; check model documentation
-
-### Dataset Selection
-- Always use **S2 test set** for evaluation (never S4 test set)
-- S4-on-S2 trains on S4 but tests on S2 for fair comparison
-- patterns.csv must match the dataset: s2_on_s2 uses 309 patterns, s4_on_s2 uses ~350
-
-### Directory Naming Convention
-```
-{model}_{epochs}ep_bs{batch_size}_lr{learning_rate}_d{d_model}_l{num_layers}_h{num_heads}_d{dropout}[_steps{num_timesteps}]_{num_seeds}seeds
-```
-
-Examples:
-- `encoder_only_100ep_bs128_lr3e-4_d512_l4_h16_d0.25_5seeds`
-- `mdlm_200ep_bs16_lr1e-4_d768_l5_h4_d0.25_steps2_5seeds`
-
-**Note**: Encoder-only does not use diffusion steps; MDLM uses num_timesteps (typically 2 or 3 for efficiency).
-
-##  License
-
-This project follows open source licensing requirements. See LICENSE file for details.
-
-##  Acknowledgments
-
-- Syriac morphological data from ETCBC (Eep Talstra Centre for Bible and Computer)
-
-##  Contact
-
-For questions, issues, or collaboration inquiries, please open an issue on the repository.
+This repository contains the data-processing pipeline, the model code, the
+five-seed prediction archive, and the statistical-analysis scripts needed to
+reproduce every number in the paper.
 
 ---
 
-**Last Updated**: 2026-01-02
-**Version**: 12.0.0
-**Status**: Production-ready core models, experimental research models available
+## Headline result
+
+On the fixed **S2 test set** (10,869 lines), training on the scaled
+**S2+S3+S4** corpus and scoring the restored ETCBC surface string
+(`.out.original`) with a character-level Levenshtein CER:
+
+- **MDLM (3 diffusion steps): CER = 3.383 %** [95 % bootstrap CI 3.302, 3.467] —
+  the lowest error among all architectures evaluated, a **≈16 % relative
+  reduction** over the generative encoder–decoder baseline (4.010 %).
+
+The MDLM's value, however, is **not** framed as an accuracy margin (it is a close
+sibling of the encoder-only classifier). Its distinctive contribution is
+**interpretability**: the multi-step denoising externalises a step-by-step,
+inspectable morphological analysis. The decisive *accuracy* result is at the
+framework level — **every discretized model beats the generative baseline**, and
+that gap is what the discretization buys.
+
+---
+
+## Main comparison (paper Table, 5-seed mean CER %, 95 % bootstrap CI)
+
+All models are scored on the **same** fixed S2 test set with **one identical
+canonical metric** (per-line character Levenshtein on the restored ETCBC surface
+string, micro-averaged over 10,869 lines, then over 5 seeds). The encoder–decoder
+is the published generative baseline; every other system shares the matched
+discrete register-pattern representation, so each comparison varies a single
+factor.
+
+| Model | Paradigm | train **S2** | train **S2+S3+S4** | Input violation |
+|---|---|---|---|---|
+| *Encoder–decoder* (generative baseline) | seq2seq | 4.107 [4.01, 4.20] | 4.010 [3.92, 4.10] | ~0.15 % |
+| BiLSTM-CRF | recurrent + CRF | 3.957 [3.87, 4.05] | 3.688 [3.61, 3.77] | 0.00 % |
+| BERT (from scratch) | token classifier | 4.227 [4.14, 4.31] | 3.709 [3.63, 3.79] | 0.00 % |
+| Encoder+CRF | transformer + CRF | 3.926 [3.84, 4.01] | 3.534 [3.45, 3.62] | 0.00 % |
+| Encoder-only | discriminative | 3.876 [3.79, 3.96] | 3.528 [3.45, 3.61] | 0.00 % |
+| **MDLM (steps = 3)** | **iterative denoising** | **3.687 [3.60, 3.78]** | **3.383 [3.30, 3.47]** | **0.00 %** |
+
+Notes:
+- **Two training regimes, one test set.** *train S2* = the standard in-distribution
+  setting (`s2_on_s2`); *train S2+S3+S4* = the scaled setting that adds the
+  out-of-distribution expansion (`s4_on_s2`). Both evaluate on the identical fixed
+  S2 test set, so the columns are directly comparable.
+- Adding the heterogeneous S4 data helps **every** architecture on the target —
+  marginally for the generative baseline (4.107→4.010, within seed noise),
+  substantially for the discretized models.
+- **Input violation** is the fraction of lines whose consonantal skeleton is
+  corrupted. Discretized models predict labels on a fixed-length canvas and so
+  *cannot* insert/delete characters (0.00 % by construction); the generative
+  baseline regenerates the text and occasionally corrupts it.
+- **Encoder+CRF (3.534) ≈ Encoder-only (3.528):** an explicit CRF label-dependency
+  head reaches the encoder-only level but does not close the gap to the MDLM, so
+  the MDLM's behaviour is not explained by generic label-dependency modelling.
+- Across-seed SD is 0.03–0.14 pp; per-seed values, paired tests and the bootstrap
+  protocol are in `analysis/cluster_F/` and the paper's Supplementary Methods.
+
+---
+
+## The structure-first pipeline
+
+The ETCBC encoding linearises text *and* its morphological tagging into a single
+symbol-rich string. The discretization pipeline maps this onto a fixed-length,
+one-to-one canvas so that classification architectures (and the MDLM) become
+applicable at all.
+
+```
+ETCBC .out.original surface string
+   │  data_processing_tools/decompose/01_out_original_reducer.py   (syntactic reduction)
+   ▼
+.out.reduced
+   │  02_generate_patterns_csv_from_reduced.py   (induce the register inventory → patterns.csv)
+   │  03_convert_reduced_to_final.py             (atomic discretization: pattern → integer id)
+   │  04_convert_final_to_out.py                 (per-position label sequence)
+   ▼
+fixed-length aligned (x_t, y_t) canvas  ──►  model  ──►  integer labels
+   │  -01_restore_reduced.py  +  restore to .out.original
+   ▼
+restored ETCBC surface string  ──►  character-level Levenshtein CER
+```
+
+### The register inventory (`patterns.csv`)
+
+`data/s2_on_s2/patterns.csv` and `data/s4_on_s2/patterns.csv` each have **330
+rows** (plus a header):
+
+- **label 0** = the empty / null pattern (no boundary marker);
+- **labels 1–328** = the morphological register patterns **observed in the
+  S2+S3+S4 training split**, ordered by descending frequency (`328` is the largest
+  *observed* label index);
+- **label 329** = a reserved `<UNKNOWN>` fallback (training count 0; never
+  predicted by the classifier).
+
+The inventory is **frequency-extracted from the corpus, not hand-designed**. The
+mapping Φ is bijective only on the *observed* register types; any out-of-vocabulary
+combination that surfaces only at test time maps to `<UNKNOWN>`, **outside** the
+bijection. We deliberately do not pre-encode unseen patterns (that would leak
+test-set information into the label space). The 100 most frequent patterns already
+cover **> 99.9 %** of all token positions, so the long tail is genuinely rare.
+
+---
+
+## Datasets
+
+| Configuration | Train | Test | Train lines | Path |
+|---|---|---|---|---|
+| **s2_on_s2** (standard / in-distribution) | S2 | S2 (fixed) | 50,649 | `data/s2_on_s2/` |
+| **s4_on_s2** (scaled / + OOD expansion) | S2+S3+S4 | S2 (fixed) | 97,048 | `data/s4_on_s2/` |
+
+Both configurations use the **identical** validation (10,964) and **test
+(10,869)** sets drawn from S2, so the two regimes are scored on the same target.
+The `data/raw_s{2,4}_on_s2/` directories hold the restored-surface ground truth
+(`test.out.original`) against which CER is computed.
+
+> **Scope.** This study uses only the ETCBC stages **S2** and **S4** (= S2+S3+S4).
+> The stage nomenclature is the ETCBC project's historical annotation milestones.
+
+The underlying ETCBC Classical Syriac database is curated by the Eep Talstra
+Centre for Bible and Computer and is available at
+<https://github.com/ETCBC/ssi_morphology>.
+
+---
+
+## Models in this study
+
+Six systems, all scored on the same metric:
+
+1. **Encoder–decoder** (`models/seq2seq.py`, `train_seq2seq.py`) — the published
+   generative seq2seq baseline; reproduces the upstream 4.0032 % bit-for-bit. An
+   independent matched Optuna search (`hpo_seq2seq.py`, 36 configurations) finds no
+   configuration that beats the published one (best 4.188 %, beam = 3), confirming
+   the published hyperparameters are near-optimal. A **constrained-decoding**
+   variant (`eval_seq2seq_constrained.py`) that hard-masks the decoder does *not*
+   help — under matched greedy decoding CER rises 4.77 % → 8.70 % — because ETCBC
+   restoration is non-monotonic (only 11.6 % of gold restorations are identical to
+   the input, 26.0 % are pure-insertion supersequences, 62.5 % are neither).
+2. **BiLSTM-CRF** — `train.py --model_type lstm --use_crf`.
+3. **BERT (from scratch)** — `train.py --model_type bert` (no Syriac pretraining).
+4. **Encoder+CRF** — `train.py --model_type transformer --use_crf`.
+5. **Encoder-only** — `train.py --model_type transformer`.
+6. **MDLM** (`models/mdlm.py`) — the masked discrete diffusion model.
+
+**MDLM production configuration** (the headline 3.383 % run): `d_model = 768`,
+`num_layers = 10`, `num_heads = 6`, `dropout = 0.23`, `lr = 5e-5`, `250` epochs,
+**3 diffusion steps**; ≈ 55.8 M parameters, vocabulary 40, 329 label classes. The
+MDLM uses a **freeze-on-commit, no-remasking** inference policy: at each of the
+T steps it commits the most confident still-masked slots and never revises them,
+so the benefit lies in the *order* of resolution. The number of diffusion steps is
+**not an accuracy lever** (a step sweep is flat across T = 1…4 within seed noise);
+T = 3 is an interpretability-motivated working point.
+
+> Additional exploratory architectures (Mamba / BiMamba / RetNet / Switch /
+> RWKV-7) remain in `models/cutting_edge.py` for completeness. **They are not part
+> of this study** and are not reported in the paper.
+
+---
+
+## Evaluation metric (CER)
+
+CER is the **per-line character-level Levenshtein distance** between the restored
+ETCBC surface string (`.out.original`) and the ground truth, divided by the
+ground-truth length, micro-averaged over the 10,869 test lines and then over five
+seeds. It is computed on the surface string a philologist actually reads — **not**
+on the raw label-digit sequence — so every counted edit is one keystroke-level
+correction, making CER a literal proxy for restoration effort.
+
+- **Bootstrap CI:** 2,000 percentile-bootstrap resamples of the test lines, fixed
+  RNG seed `20260606`, percentiles [2.5, 97.5].
+- **Across-seed SD** is reported separately (training stochasticity).
+- The test lines are overlapping sliding windows over shared verses and are **not
+  independent**, so the line-level intervals/p-values are anti-conservative and are
+  treated as a **lower bound** on uncertainty.
+- **No seed was excluded by any criterion** (no 2-sigma / outlier-rejection code
+  exists anywhere in the repository); the reported 5-seed means equal the
+  full, unfiltered means exactly.
+
+Reproduce the canonical numbers:
+
+```bash
+# 5-seed means + 95% bootstrap CI + paired comparisons (reproduces the JSON bit-for-bit)
+python analysis/cluster_F/bootstrap_ci.py
+
+# three-model error overlap + per-wrong-word correction effort (paper §4.4 / Supp §S6)
+python analysis/three_model_string_error.py
+python analysis/per_word_editdistance.py
+```
+
+---
+
+## Repository layout
+
+```
+.
+├── README.md                       # this file
+├── changelog.md                    # version history
+├── requirements.txt                # Python dependencies
+├── HPO_README.md                   # hyperparameter-search component guide
+│
+├── train.py                        # unified trainer (transformer / bert / lstm / mdlm; --use_crf)
+├── train_hpo.py                    # Optuna HPO for the discretized models
+├── train_seq2seq.py                # encoder–decoder baseline training
+├── hpo_seq2seq.py                  # matched Optuna HPO for the encoder–decoder (R2-M2)
+├── dump_encdec_hpo_trials.py       # exports every enc–dec HPO trial → CSV (transparency)
+├── eval_cer.py / batch_cer.py      # canonical CER for label-model predictions
+├── eval_seq2seq_cer.py             # canonical CER for seq2seq predictions
+├── beam_eval_seq2seq.py            # beam-search re-evaluation of seq2seq checkpoints
+├── eval_seq2seq_constrained.py     # constrained-decoding negative result (R2-M2)
+├── collect_results.py              # 5-seed aggregation → markdown tables
+├── download_ssi_data.py            # fetch the upstream ETCBC SSI data
+│
+├── models/                         # model definitions
+│   ├── seq2seq.py                  # encoder–decoder baseline
+│   ├── transformer.py              # encoder-only (+ optional CRF head)
+│   ├── bert.py                     # from-scratch BERT token classifier (+ optional CRF)
+│   ├── lstm.py                     # BiLSTM (+ optional CRF head)
+│   ├── mdlm.py                     # masked diffusion language model
+│   └── ...                         # core/, components/, model_factory.py, cutting_edge.py
+│
+├── data/
+│   ├── s2_on_s2/                   # standard regime  (+ patterns.csv, 330 rows)
+│   ├── s4_on_s2/                   # scaled regime    (+ patterns.csv, 330 rows)
+│   └── raw_s{2,4}_on_s2/           # restored-surface ground truth (.out.original)
+│
+├── data_processing_tools/
+│   └── decompose/                  # the 4-stage discretization pipeline + inverse restore
+│
+├── analysis/                       # statistical analysis backing the paper numbers
+│   ├── cluster_F/                  # CER + bootstrap CI + paired tests (R2-M5/M6) + SUMMARY.md
+│   ├── cluster_A/                  # divergence / seen-unseen / position-distance buckets
+│   ├── three_model_string_error.py # discrete-vs-generative error overlap (§4.4 / Supp §S6)
+│   └── per_word_editdistance.py    # per-wrong-word correction effort
+│
+└── outputs/models_1_revision/      # 5-seed prediction archive (one folder per model)
+    ├── encoder_decoder_5seed/  bilstm_crf/  bert/  encoder_crf/  encoder_only/  mdlm/
+    ├── hpo_encoder_decoder/        # matched HPO study records (36 configs)
+    ├── constrained_decoding/       # constrained-decoding runs
+    ├── tsweep_step_ablation_100ep/ # diffusion-step sweep
+    └── MANIFEST_models.txt         # seed → source-run provenance map
+```
+
+> **Model weights** (`*.pt` / `*.pth`) are intentionally **not** committed — every
+> table in the paper is reproducible directly from the on-disk **predictions**
+> (`.out` / `.out.original`) and result JSONs under `outputs/models_1_revision/`.
+
+---
+
+## Quick start
+
+```bash
+# environment (uv recommended; pip works too)
+uv pip install -r requirements.txt      # or: pip install -r requirements.txt
+
+# train the MDLM production configuration (headline 3.383%)
+python train.py --model_type mdlm --data_dir data/s4_on_s2 \
+    --d_model 768 --num_layers 10 --num_heads 6 --dropout 0.23 \
+    --learning_rate 5e-5 --num_epochs 250 --num_timesteps 3 --seed 42
+
+# encoder-only / Encoder+CRF / BiLSTM-CRF / BERT
+python train.py --model_type transformer --data_dir data/s4_on_s2 --seed 42
+python train.py --model_type transformer --use_crf --data_dir data/s4_on_s2 --seed 42
+python train.py --model_type lstm        --use_crf --data_dir data/s4_on_s2 --seed 42
+python train.py --model_type bert                  --data_dir data/s4_on_s2 --seed 42
+
+# encoder–decoder generative baseline
+python train_seq2seq.py --data_dir data/s2_seq2seq --seed 42
+```
+
+---
+
+## Reproducibility
+
+- **Environment:** Python 3.10, PyTorch 2.x, CUDA 11.8; runs reported on an NVIDIA
+  RTX 4090D (24 GB). CRF baselines additionally require `pytorch-crf`.
+- **Total compute** for the full revision (all 6 models × 5 seeds × 2 regimes, the
+  matched encoder–decoder HPO, the diffusion-step sweep, and the constrained-decoding
+  runs): on the order of **700 GPU-hours**.
+- Every metric is regenerated from the committed predictions by the `analysis/`
+  scripts; `analysis/cluster_F/SUMMARY.md` documents the bit-for-bit reproduction.
+
+## Data & code availability
+
+- **Data:** ETCBC Classical Syriac database — <https://github.com/ETCBC/ssi_morphology>.
+- **Code (anonymous review mirror):** <https://anonymous.4open.science/r/mdlm>.
+- Stable links to permanent public repositories will be provided upon publication.
+
+## Acknowledgements
+
+Syriac morphological data from the Eep Talstra Centre for Bible and Computer
+(ETCBC). We thank Constantijn Sikkel for valuable insights on the ETCBC encoding.
