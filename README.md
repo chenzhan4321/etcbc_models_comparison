@@ -113,8 +113,9 @@ The inventory is **frequency-extracted from the corpus, not hand-designed**. The
 mapping Φ is bijective only on the *observed* register types; any out-of-vocabulary
 combination that surfaces only at test time maps to `<UNKNOWN>`, **outside** the
 bijection. We deliberately do not pre-encode unseen patterns (that would leak
-test-set information into the label space). The 100 most frequent patterns already
-cover **> 99.9 %** of all token positions, so the long tail is genuinely rare.
+test-set information into the label space). The distribution is **steeply
+long-tailed** — a small number of high-frequency patterns dominate, while the rare
+combinations sit in the far tail and unseen ones fall back to `<UNKNOWN>`.
 
 ---
 
@@ -144,7 +145,9 @@ Centre for Bible and Computer and is available at
 Six systems, all scored on the same metric:
 
 1. **Encoder–decoder** (`models/seq2seq.py`, `train_seq2seq.py`) — the published
-   generative seq2seq baseline; reproduces the upstream 4.0032 % bit-for-bit. An
+   generative seq2seq baseline. The published configuration reproduces the upstream
+   single-run result (4.0032 %) bit-for-bit, and our five-seed reproduction gives
+   4.107 % (train S2) / 4.010 % (train S2+S3+S4) — the values in the table above. An
    independent matched Optuna search (`hpo_seq2seq.py`, 36 configurations) finds no
    configuration that beats the published one (best 4.188 %, beam = 3), confirming
    the published hyperparameters are near-optimal. A **constrained-decoding**

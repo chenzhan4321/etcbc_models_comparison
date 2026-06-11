@@ -112,13 +112,15 @@ python 01_out_original_reducer.py
 2. **Colon patterns**: `:` followed by `d`, `p`, or `dp`
 3. **Special markers**: Various morphological indicators
 
-**patterns.csv Format**:
+**patterns.csv Format** (`label,pattern,count`; label 0 = the empty/null
+pattern, labels 1–328 = observed registers ordered by descending frequency,
+label 329 = the reserved `<UNKNOWN>` fallback):
 ```csv
-pattern,label,count
-<ROOT>,1,1250
-(A),2,890
-:d,3,756
-<UNKNOWN>,0,0
+label,pattern,count
+0,,3066705
+1,-,404156
+2,/,165508
+329,<UNKNOWN>,0
 ```
 
 **Usage**:
@@ -212,13 +214,14 @@ BXYZ!CUVW@ LSTU]M
 ```
 
 ### patterns.csv Format
-Pattern database with labels and frequencies:
+Pattern database with labels and frequencies (`label,pattern,count`; label 0 is
+the null pattern, label 329 is the reserved `<UNKNOWN>` fallback):
 ```csv
-pattern,label,count
-<ROOT>,1,1250
-(VERB),2,890
-:d,3,756
-<UNKNOWN>,0,0
+label,pattern,count
+0,,3066705
+1,-,404156
+2,/,165508
+329,<UNKNOWN>,0
 ```
 
 ### .out.final Format
@@ -251,10 +254,10 @@ def extract_patterns_custom(text):
 
 ### Label Assignment Strategy
 
-Configure label assignment in `patterns.csv`:
-- **Label 0**: Reserved for `<UNKNOWN>` patterns
-- **Labels 1-N**: Assigned by frequency (most common → lowest numbers)
-- **Custom Labels**: Can be manually assigned for specific patterns
+Label assignment in `patterns.csv`:
+- **Label 0**: the empty/null pattern (no boundary marker)
+- **Labels 1–328**: observed register patterns, assigned by descending frequency
+- **Label 329**: the reserved `<UNKNOWN>` fallback (training count 0; never predicted)
 
 ### Unknown Pattern Handling
 
@@ -334,7 +337,7 @@ python accuracy_analyzer.py --enhanced
 For multiple model outputs:
 ```bash
 # Process multiple models
-for model in lstm transformer rwkv7; do
+for model in transformer mdlm bert; do
     echo "Processing $model..."
     cp outputs/${model}_predictions.out.original train.out.original
     python 01_out_original_reducer.py

@@ -6,11 +6,15 @@
 > `README.md` and `hpo_seq2seq.py`. The other architectures listed below are
 > exploratory and are **not part of the study**.
 
-Hyperparameter tuning and model comparison system supporting all 13 neural network architectures.
+Hyperparameter-tuning utility for the codebase. The **paper's** searches cover the
+encoder-only classifier, the MDLM, and the matched encoder–decoder baseline; the
+same machinery also supports a number of additional **exploratory** architectures
+that are *not part of the study*.
 
 ## 🎯 Features
 
-- **13 Model Support**: Transformer, BERT, LSTM, MDLM, Mamba, BiMamba, RWKV-7, RetNet, Switch, etc.
+- **Paper models**: Transformer (encoder-only), MDLM, encoder–decoder. *(Exploratory,
+  not in the paper: BERT, LSTM, Mamba, BiMamba, RWKV-7, RetNet, Switch.)*
 - **Intelligent Model Grouping**: Automatic grouping comparison by computational power/parameter count (light/medium/large/xl/efficient)
 - **Multiple Optimization Algorithms**: Optuna (Bayesian), Hyperopt (TPE), Random Search, Grid Search
 - **Smart Search Spaces**: Parameter spaces optimized for different architectures
@@ -61,6 +65,9 @@ python train_hpo.py --model_type rwkv7 --optimizer hyperopt --n_trials 35
 python train_hpo.py --model_type retnet --n_trials 45 --enable_pruning
 ```
 
+> The `bimamba_large`, `rwkv7`, and `retnet` examples above are **exploratory**
+> architectures, not part of the paper.
+
 #### 🆕 Model Comparison Mode
 ```bash
 # Quick comparison of all model groups
@@ -82,7 +89,7 @@ python train_hpo.py --compare_models \
 
 ## 📊 Model Grouping System
 
-The HPO system automatically groups the 13 models by computational power/parameter count for equivalent-level comparison:
+The HPO system automatically groups the supported models (paper + exploratory) by computational power/parameter count for equivalent-level comparison:
 
 | Group | Models | Parameter Count | Description |
 |-------|--------|----------------|-------------|
@@ -98,7 +105,7 @@ The HPO system automatically groups the 13 models by computational power/paramet
 
 | Parameter | Description | Default | Options |
 |-----------|-------------|---------|---------|
-| `--model_type` | Model type | None | All 13 models |
+| `--model_type` | Model type | None | paper models + exploratory |
 | `--compare_models` | Enable model comparison | False | - |
 | `--compare_groups` | Model groups to compare | all | light, medium, large, xl, efficient |
 | `--compare_mode` | Comparison mode | hpo | hpo, quick |
