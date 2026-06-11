@@ -183,7 +183,20 @@ class SyriacTransformerModel(BaseTransformerModel):
             use_pooling=False,  # 序列标注任务不需要池化
             num_layers=2,
         )
-    
+
+        # 可选 CRF 层（用于 Encoder+CRF baseline，回应 R2-M4/R3-2）。
+        # train.py 的评估/训练路径只依赖 model.crf 是否存在；forward 仍返回 3D logits。
+        if self.config.get('use_crf', False):
+            try:
+                from torchcrf import CRF
+                self.crf = CRF(self.num_classes, batch_first=True)
+                log_info("Transformer 启用 CRF 层（Encoder+CRF）")
+            except ImportError:
+                log_info("未安装 torchcrf，跳过 CRF 层")
+                self.crf = None
+        else:
+            self.crf = None
+
     def encode(
         self,
         input_ids: torch.Tensor,

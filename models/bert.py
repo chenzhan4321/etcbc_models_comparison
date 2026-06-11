@@ -217,7 +217,20 @@ class SyriacBERTModel(BaseTransformerModel):
         
         # 初始化权重
         self.apply(self._init_bert_weights)
-    
+
+        # 可选 CRF 层（BERT-token-classifier + CRF；回应 R2-M4/R3-2）。
+        # 放在 apply 之后，CRF 保持自身初始化（其参数不被 _init_bert_weights 触及）。
+        if self.config.get('use_crf', False):
+            try:
+                from torchcrf import CRF
+                self.crf = CRF(self.num_classes, batch_first=True)
+                log_info("BERT 启用 CRF 层")
+            except ImportError:
+                log_info("未安装 torchcrf，跳过 CRF 层")
+                self.crf = None
+        else:
+            self.crf = None
+
     def _init_bert_weights(self, module):
         """BERT特定的权重初始化（数值稳定版本）"""
         initializer_range = self.config.get('initializer_range', 0.01)  # 降低初始化标准差
@@ -267,10 +280,10 @@ class SyriacBERTModel(BaseTransformerModel):
         
         # 准备注意力掩码（数值稳定版本）
         if attention_mask is not None:
-            # 扩展掩码维度 [batch_size, seq_len] -> [batch_size, 1, 1, seq_len]
-            extended_attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
-            # 使用更温和的掩码值，避免数值不稳定
-            extended_attention_mask = (1.0 - extended_attention_mask) * -1e4
+            # FIX(2026-06-07): MultiHeadAttention 用 masked_fill(mask==0,-1e9) 约定;
+            # 原加性掩码符号与之相反 → 会 mask 掉真实 token、只 attend padding → 塌缩到多数类(0.71)。
+            # 直接传原始 0/1 掩码(1=真实,0=padding),MHA 内部自会扩展维度。
+            extended_attention_mask = attention_mask
         else:
             extended_attention_mask = None
         

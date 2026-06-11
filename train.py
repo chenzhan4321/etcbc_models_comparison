@@ -145,6 +145,9 @@ class ModelTrainer:
         self.log_dir = log_dir
         self.model = model.to(device)
         self.device = device
+        import os as _os
+        self.ddp_world = int(_os.environ.get("WORLD_SIZE", 1))
+        self.ddp_rank = int(_os.environ.get("RANK", 0))
         self.num_classes = num_classes
         self.class_weights = class_weights  # 添加这一行
         
@@ -300,6 +303,10 @@ class ModelTrainer:
                     loss = self.model.compute_loss(input_ids, labels, self.class_weights)
                 else:
                     loss = self.model.compute_loss(input_ids, labels)
+            elif getattr(self.model, 'crf', None) is not None:
+                # CRF 模型：用 CRF 负对数似然作为损失（outputs 为 3D logits [B,T,C]）
+                safe_labels, crf_mask = _crf_prepare(labels, attention_mask)
+                loss = -self.model.crf(outputs, safe_labels, mask=crf_mask, reduction='mean')
             else:
                 # 标准模型的损失计算
                 outputs = outputs.view(-1, self.num_classes)
@@ -317,7 +324,14 @@ class ModelTrainer:
                 continue
                 
             loss.backward()
-            
+            # === DDP: 跨卡同步(求和后平均)梯度 ===
+            if getattr(self, 'ddp_world', 1) > 1:
+                import torch.distributed as _dist
+                for _p in self.model.parameters():
+                    if _p.grad is not None:
+                        _dist.all_reduce(_p.grad, op=_dist.ReduceOp.SUM)
+                        _p.grad.div_(self.ddp_world)
+
             # 检查梯度状态
             total_norm = 0
             for p in self.model.parameters():
@@ -405,15 +419,22 @@ class ModelTrainer:
                     # 展平用于评估
                     predictions_flat = predictions.view(-1)
                     labels_flat = labels_for_eval.view(-1)
+                elif getattr(self.model, 'crf', None) is not None:
+                    # CRF 模型：CRF NLL 作损失，Viterbi 解码作预测
+                    safe_labels, crf_mask = _crf_prepare(labels, attention_mask)
+                    loss = -self.model.crf(outputs, safe_labels, mask=crf_mask, reduction='mean')
+                    pred_2d = _crf_decode_to_tensor(self.model, outputs, attention_mask, labels)
+                    predictions_flat = pred_2d.view(-1)
+                    labels_flat = labels.view(-1)
                 else:
                     # 标准模型的处理
                     # 为损失计算重塑形状
                     outputs_flat = outputs.view(-1, self.num_classes)
                     labels_flat = labels.view(-1)
-                    
+
                     # 计算损失
                     loss = self.criterion(outputs_flat, labels_flat)
-                    
+
                     # 获取预测结果
                     predictions_flat = torch.argmax(outputs_flat, dim=1)
                 
@@ -594,10 +615,12 @@ class ModelTrainer:
         best_val_accuracy = 0   # 最佳验证准确率
         best_epoch = -1         # 记录最佳模型的epoch
         patience_counter = 0    # 耐心计数器
-        patience = 50           # 耐心阈值：极度不平衡数据需要更多耐心
+        patience = getattr(self, 'patience', 50)  # 耐心阈值：可由 trainer.patience 覆盖
         
         # 训练循环
         for epoch in range(num_epochs):
+            if hasattr(train_loader, 'sampler') and hasattr(train_loader.sampler, 'set_epoch'):
+                train_loader.sampler.set_epoch(epoch)  # DDP: 每 epoch 重排分片
             print(f"\nEpoch {epoch + 1}/{num_epochs}")
             print("-" * 50)
             
@@ -630,9 +653,10 @@ class ModelTrainer:
             print(f"验证准确率: {val_accuracy:.4f} ({val_correct}/{val_total})")
             print(f"学习率: {self.optimizer.param_groups[0]['lr']:.6f}")
             
-            # 生成样本输出：训练集3个样本，验证集2个样本
-            self.generate_sample_outputs(train_loader, num_samples=3, sample_type="训练")
-            self.generate_sample_outputs(val_loader, num_samples=2, sample_type="验证")
+            # 生成样本输出：训练集3个样本，验证集2个样本（仅 rank0,避免 DDP 多进程重复）
+            if self.ddp_rank == 0:
+                self.generate_sample_outputs(train_loader, num_samples=3, sample_type="训练")
+                self.generate_sample_outputs(val_loader, num_samples=2, sample_type="验证")
             
             # 保存最佳模型（基于weighted F1分数）
             if val_f1_weighted > best_val_accuracy:
@@ -657,8 +681,9 @@ class ModelTrainer:
                 if self.scheduler is not None:
                     checkpoint['scheduler_state_dict'] = self.scheduler.state_dict()
                 
-                torch.save(checkpoint, save_path)
-                
+                if self.ddp_rank == 0:
+                    torch.save(checkpoint, save_path)
+
                 print(f"💾 保存新的最佳模型！验证F1(weighted): {val_f1_weighted:.4f} (Epoch {epoch + 1})")
             else:
                 patience_counter += 1  # 增加耐心计数器
@@ -711,6 +736,31 @@ class ModelTrainer:
         plt.savefig(save_path)
         plt.close()
 
+def _crf_prepare(labels, attention_mask):
+    """把以 -100 作 padding 的 labels 转成 torchcrf 需要的 (safe_labels, bool_mask)。
+    torchcrf 要求 labels∈[0,C) 且 mask 为 bool 且每条序列首位为 True。"""
+    if attention_mask is not None:
+        mask = attention_mask.bool().clone()
+    else:
+        mask = (labels != -100)
+    mask = mask & (labels != -100)
+    mask[:, 0] = True  # torchcrf 要求每条序列首位有效
+    safe_labels = labels.clone()
+    safe_labels[labels == -100] = 0
+    return safe_labels, mask
+
+
+def _crf_decode_to_tensor(model, logits, attention_mask, labels):
+    """用 CRF Viterbi 解码并把变长路径 pad 回 [batch, seq_len] tensor（与 labels 对齐）。"""
+    _, mask = _crf_prepare(labels, attention_mask)
+    paths = model.crf.decode(logits, mask=mask)  # List[List[int]]
+    out = torch.zeros_like(labels)
+    for i, p in enumerate(paths):
+        if len(p) > 0:
+            out[i, :len(p)] = torch.as_tensor(p, device=labels.device, dtype=out.dtype)
+    return out
+
+
 def evaluate_model(model, dataloader, device, num_classes, return_per_sample=False):
     """
     评估模型并返回详细指标
@@ -762,11 +812,18 @@ def evaluate_model(model, dataloader, device, num_classes, return_per_sample=Fal
                 min_len = min(predictions.size(1), labels.size(1))
                 predictions = predictions[:, :min_len]
                 labels = labels[:, :min_len]
+            elif getattr(model, 'crf', None) is not None:
+                # CRF 模型：Viterbi 解码
+                logits = model(input_ids, attention_mask)
+                predictions = _crf_decode_to_tensor(model, logits, attention_mask, labels)
+                min_len = min(predictions.size(1), labels.size(1))
+                predictions = predictions[:, :min_len]
+                labels = labels[:, :min_len]
             else:
                 # 标准模型预测
                 outputs = model(input_ids, attention_mask)
                 predictions = torch.argmax(outputs, dim=-1)
-            
+
             # 如果需要保存每个样本的预测
             if return_per_sample:
                 # 对批次中的每个样本
@@ -1177,7 +1234,10 @@ def main():
     parser.add_argument('--num_heads', type=int, default=4, help='注意力头数（降低以减少复杂度）')
     parser.add_argument('--dropout', type=float, default=0.2, help='Dropout概率（提高以避免过拟合）')
     parser.add_argument('--num_timesteps', type=int, default=1000, help='Diffusion时间步数')
-    
+    parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducibility')
+    parser.add_argument('--patience', type=int, default=50, help='Early stopping patience (epochs without improvement)')
+    parser.add_argument('--use_crf', action='store_true', help='在分类头之上加 CRF 层（用于 BiLSTM-CRF / Encoder+CRF baseline，回应 R2-M4/R3-2）')
+
     # 智能训练功能
     parser.add_argument('--smart_config', action='store_true', help='启用智能配置优化')
     parser.add_argument('--force_device', type=str, choices=['cpu', 'cuda', 'mps'], 
@@ -1192,7 +1252,16 @@ def main():
     
     # 解析命令行参数
     args = parser.parse_args()
-    
+
+    # 设置随机种子（可复现性）
+    import random as _random
+    _random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+    os.environ['PYTHONHASHSEED'] = str(args.seed)
+
     # 处理兼容性参数
     if args.epochs is not None:
         args.num_epochs = args.epochs
@@ -1391,7 +1460,16 @@ def main():
         # 设置GPU内存分配策略
         torch.cuda.empty_cache()
         torch.backends.cudnn.benchmark = True  # 优化CUDA性能
-        
+        # === DDP (torchrun) 初始化:在 torchrun 下绑定本卡并建进程组 ===
+        if "LOCAL_RANK" in os.environ:
+            import torch.distributed as _dist
+            _lrk = int(os.environ["LOCAL_RANK"])
+            torch.cuda.set_device(_lrk)
+            if not _dist.is_initialized():
+                _dist.init_process_group(backend="nccl")
+            device = torch.device(f"cuda:{_lrk}")
+            print(f"🔗 DDP rank {os.environ.get('RANK')}/{os.environ.get('WORLD_SIZE')} local={_lrk} device={device}")
+
         # 根据GPU内存调整批次大小建议
         gpu_memory_gb = torch.cuda.get_device_properties(0).total_memory / 1024**3
         if gpu_memory_gb < 6:
@@ -1467,6 +1545,18 @@ def main():
         model_type=args.model_type,  # 传递模型类型
         test_return_line_numbers=test_return_line_numbers  # 传递是否返回行号
     )
+    # === DDP: 用 DistributedSampler 把训练集分片(每卡只载 1/world,真正加速) ===
+    if "LOCAL_RANK" in os.environ and int(os.environ.get("WORLD_SIZE", 1)) > 1:
+        from torch.utils.data.distributed import DistributedSampler as _DSamp
+        from torch.utils.data import DataLoader as _DL
+        _ws = int(os.environ["WORLD_SIZE"]); _rk = int(os.environ["RANK"])
+        _tds = train_loader.dataset
+        _samp = _DSamp(_tds, num_replicas=_ws, rank=_rk, shuffle=True, seed=getattr(args, 'seed', 42))
+        train_loader = _DL(_tds, batch_size=adjusted_batch_size, sampler=_samp,
+                           collate_fn=train_loader.collate_fn,
+                           num_workers=getattr(train_loader, 'num_workers', 0), pin_memory=True)
+        if _rk == 0:
+            print(f"🔗 DDP 训练分片: world={_ws}, batch/卡={adjusted_batch_size}, 等效batch={adjusted_batch_size*_ws}")
     
     # 对于非diffusion模型，计算分类类别数和权重
     if args.model_type != 'diffusion':
@@ -1593,6 +1683,12 @@ def main():
                     'max_length': args.max_length,
                 }
             
+            model_config['use_crf'] = getattr(args, 'use_crf', False)
+            # FIX(2026-06-07): 训练时让 mdlm/diffusion 的 diffusion_steps 真正取自 --num_timesteps。
+            # 否则 create_model 落到 mdlm.py 内置默认 10,time_emb 永远 10 槽,
+            # 导致"按不同步数训练"的 T-sweep 全部失效(实测 --num_timesteps 3 仍训成 steps=10)。
+            if args.model_type.lower() in ('mdlm', 'diffusion'):
+                model_config['diffusion_steps'] = args.num_timesteps
             model = create_model(
                 model_type=args.model_type,
                 vocab_size=vocab_size,  # 使用根据模型类型获取的词汇表大小
@@ -1678,16 +1774,17 @@ def main():
     warmup_steps = min(1000, int(0.1 * total_training_steps))  # warmup占总步数的10%或1000步
     
     trainer = ModelTrainer(
-        model, device, num_classes, 
-        args.learning_rate, 
-        weight_decay=args.weight_decay, 
-        log_dir=log_dir, 
+        model, device, num_classes,
+        args.learning_rate,
+        weight_decay=args.weight_decay,
+        log_dir=log_dir,
         class_weights=class_weights,
         use_warmup=True,  # 启用warmup
         warmup_steps=warmup_steps,
         use_scheduler=True,
         total_steps=total_training_steps
     )
+    trainer.patience = args.patience  # apply --patience CLI override
     
     # timestamp已经在创建输出目录时生成了，不需要重新生成
     

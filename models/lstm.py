@@ -114,7 +114,7 @@ class LSTMEncoder(nn.Module):
         # 应用自注意力（如果启用）
         if self.use_attention:
             # 残差连接 + 自注意力
-            attn_output, _ = self.attention(output, mask=mask)
+            attn_output = self.attention(output, mask=mask)  # SelfAttention 返回单 tensor（修复原解包 bug）
             output = self.attention_norm(output + self.attention_dropout(attn_output))
         
         return output, (h_n, c_n)
