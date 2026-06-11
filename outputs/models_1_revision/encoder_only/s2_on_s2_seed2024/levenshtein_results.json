@@ -1,0 +1,15 @@
+{
+  "name": "seed2024",
+  "total_distance": 23351,
+  "avg_distance": 2.1484037169932835,
+  "char_accuracy": 0.9616422649642147,
+  "line_accuracy": 0.4039010028521483,
+  "exact_matches": 4390,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4390,
+    "dist_1_5": 5241,
+    "dist_6_10": 1052,
+    "dist_gt_10": 186
+  }
+}

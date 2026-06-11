@@ -1,0 +1,15 @@
+{
+  "name": "seed2023",
+  "total_distance": 23432,
+  "avg_distance": 2.1558561045174347,
+  "char_accuracy": 0.9615092095688184,
+  "line_accuracy": 0.4106173521023093,
+  "exact_matches": 4463,
+  "total_lines": 10869,
+  "dist_distribution": {
+    "dist_0": 4463,
+    "dist_1_5": 5138,
+    "dist_6_10": 1051,
+    "dist_gt_10": 217
+  }
+}
