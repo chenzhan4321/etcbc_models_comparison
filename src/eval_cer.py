@@ -19,7 +19,7 @@ eval_cer.py — 单 checkpoint 的整数预测 → CER 一条龙(口径与既有
 """
 import argparse, csv, glob, os, sys
 
-REPO = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 from restore_to_original import restore_line  # 复用已校准的 reduced→original 还原器
 

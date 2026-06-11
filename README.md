@@ -151,7 +151,7 @@ Six systems, all scored on the same metric:
    independent matched Optuna search (`hpo_seq2seq.py`, 36 configurations) finds no
    configuration that beats the published one (best 4.188 %, beam = 3), confirming
    the published hyperparameters are near-optimal. A **constrained-decoding**
-   variant (`eval_seq2seq_constrained.py`) that hard-masks the decoder does *not*
+   variant (`src/eval_seq2seq_constrained.py`) that hard-masks the decoder does *not*
    help — under matched greedy decoding CER rises 4.77 % → 8.70 % — because ETCBC
    restoration is non-monotonic (only 11.6 % of gold restorations are identical to
    the input, 26.0 % are pure-insertion supersequences, 62.5 % are neither).
@@ -221,13 +221,18 @@ python analysis/per_word_editdistance.py
 ├── train_hpo.py                    # Optuna HPO for the discretized models
 ├── train_seq2seq.py                # encoder–decoder baseline training
 ├── hpo_seq2seq.py                  # matched Optuna HPO for the encoder–decoder (R2-M2)
-├── dump_encdec_hpo_trials.py       # exports every enc–dec HPO trial → CSV (transparency)
-├── eval_cer.py / batch_cer.py      # canonical CER for label-model predictions
-├── eval_seq2seq_cer.py             # canonical CER for seq2seq predictions
-├── beam_eval_seq2seq.py            # beam-search re-evaluation of seq2seq checkpoints
-├── eval_seq2seq_constrained.py     # constrained-decoding negative result (R2-M2)
-├── collect_results.py              # 5-seed aggregation → markdown tables
-├── download_ssi_data.py            # fetch the upstream ETCBC SSI data
+│                                   #   (the four trainers stay at root: the Supplementary
+│                                   #    documents `python train.py ...` as the repro command)
+│
+├── src/                            # evaluation & utility scripts (run from the repo root,
+│   │                               #  e.g. `python src/eval_cer.py`)
+│   ├── eval_cer.py / batch_cer.py  # canonical CER for label-model predictions
+│   ├── eval_seq2seq_cer.py         # canonical CER for seq2seq predictions
+│   ├── beam_eval_seq2seq.py        # beam-search re-evaluation of seq2seq checkpoints
+│   ├── eval_seq2seq_constrained.py # constrained-decoding negative result (R2-M2)
+│   ├── dump_encdec_hpo_trials.py   # exports every enc–dec HPO trial → CSV (transparency)
+│   ├── collect_results.py          # 5-seed aggregation → markdown tables
+│   └── download_ssi_data.py        # fetch the upstream ETCBC SSI data
 │
 ├── models/                         # model definitions
 │   ├── seq2seq.py                  # encoder–decoder baseline
@@ -251,12 +256,15 @@ python analysis/per_word_editdistance.py
 │   ├── three_model_string_error.py # discrete-vs-generative error overlap (§4.4 / Supp §S6)
 │   └── per_word_editdistance.py    # per-wrong-word correction effort
 │
-└── outputs/models_1_revision/      # 5-seed prediction archive (one folder per model)
-    ├── encoder_decoder_5seed/  bilstm_crf/  bert/  encoder_crf/  encoder_only/  mdlm/
-    ├── hpo_encoder_decoder/        # matched HPO study records (36 configs)
-    ├── constrained_decoding/       # constrained-decoding runs
-    ├── tsweep_step_ablation_100ep/ # diffusion-step sweep
-    └── MANIFEST_models.txt         # seed → source-run provenance map
+└── outputs/                        # results archive (see outputs/README.md for the
+    │                               #  paper-cross-reference index)
+    ├── models_1_revision/          # 5-seed prediction archive (one folder per model)
+    │   ├── encoder_decoder_5seed/  bilstm_crf/  bert/  encoder_crf/  encoder_only/  mdlm/
+    │   ├── hpo_encoder_decoder/    # matched HPO study (36 configs) + report
+    │   ├── constrained_decoding/   # constrained-decoding runs
+    │   ├── tsweep_step_ablation_100ep/  # diffusion-step sweep
+    │   └── MANIFEST_models.txt     # seed → source-run provenance map
+    └── <config-named dirs>/        # per-configuration result reports (Supplementary §S2)
 ```
 
 > **Model weights** (`*.pt` / `*.pth`) are intentionally **not** committed — every

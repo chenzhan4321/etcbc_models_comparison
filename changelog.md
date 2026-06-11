@@ -2,6 +2,23 @@
 
 All notable changes to this repository. Format: `[date] version: summary`.
 
+## [2026-06-11] 13.1.0: Tidy script layout (src/) and add a results-archive index
+
+- **`src/` for evaluation & utility scripts.** Moved the eight evaluation/utility
+  helpers (`eval_cer.py`, `batch_cer.py`, `eval_seq2seq_cer.py`,
+  `eval_seq2seq_constrained.py`, `beam_eval_seq2seq.py`, `dump_encdec_hpo_trials.py`,
+  `collect_results.py`, `download_ssi_data.py`) into `src/`. The four **trainers**
+  (`train.py`, `train_hpo.py`, `train_seq2seq.py`, `hpo_seq2seq.py`) deliberately
+  **stay at the repository root**, because the Supplementary Methods document
+  `python train.py …` as the reproduction command. Scripts are still run from the
+  repo root (e.g. `python src/eval_cer.py`); the in-script `REPO` path roots were
+  adjusted accordingly and all imports were smoke-tested.
+- **`outputs/README.md` results-archive index.** Added a cross-reference that maps
+  every paper-reported result (including the encoder–decoder **36-configuration HPO
+  report**, the case study, and the per-model 5-seed archives) to its actual path,
+  and reconciles the Supplementary Methods' `report/` / `data_post_processing/`
+  wording with the repository's `outputs/` / `data_processing_tools/`.
+
 ## [2026-06-11] 13.0.0: Sync repository to the accepted-revision paper
 
 Aligned the public, reviewer-facing repository with the final revised manuscript

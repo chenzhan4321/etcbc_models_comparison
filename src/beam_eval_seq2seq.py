@@ -18,7 +18,7 @@ import sys
 
 import torch
 
-REPO = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO not in sys.path:
     sys.path.insert(0, REPO)
 from models.seq2seq import SyriacSeq2SeqModel, PAD_IDX, SOS_IDX, EOS_IDX  # noqa: E402

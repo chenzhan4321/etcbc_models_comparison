@@ -16,7 +16,7 @@ import argparse, json, os, sys
 import torch
 from torch.utils.data import DataLoader
 
-REPO = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 from train_seq2seq import read_lines, decode_ids, compute_cer, collate_batch, Seq2SeqDataset
 from models.seq2seq import SyriacSeq2SeqModel

@@ -10,7 +10,7 @@ batch_cer.py — 把一堆整数预测 .out(命名 <model>_<dataset>_s<seed>_<ex
 import glob, os, re, sys
 import numpy as np
 
-REPO = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 from eval_cer import load_patterns, reconstruct_original, levenshtein, read_lines, DEFAULT_GT, DEFAULT_PATTERNS
 
