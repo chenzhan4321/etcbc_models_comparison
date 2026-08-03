@@ -21,7 +21,7 @@ import os
 import csv
 from functools import lru_cache
 
-REPO = "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update"
+REPO = "<REPO_ROOT>"
 
 ENC_DIR = os.path.join(
     REPO, "outputs",

@@ -81,8 +81,8 @@ def calculate_accuracy(pred_file, truth_file):
 def main():
     """主函数"""
 
-    pred_file = Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s2_on_s2/test.out.original")
-    truth_file = Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original")
+    pred_file = Path("<REPO_ROOT>/outputs/transformer_s2_on_s2/test.out.original")
+    truth_file = Path("<REPO_ROOT>/data/raw_s2_on_s2/test.out.original")
 
     print("=" * 80)
     print("transformer_s2_on_s2 - Levenshtein 字符正确率分析")

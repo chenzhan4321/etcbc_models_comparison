@@ -83,13 +83,13 @@ def main():
     """主函数"""
 
     # 定义真实标签文件
-    truth_file = Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original")
+    truth_file = Path("<REPO_ROOT>/data/raw_s2_on_s2/test.out.original")
 
     # 定义要测试的三个模型
     test_models = [
-        "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s2_on_s2/test.out.original",
-        "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s2/test.out.original",
-        "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s4/test.out.original"
+        "<REPO_ROOT>/outputs/transformer_s2_on_s2/test.out.original",
+        "<REPO_ROOT>/outputs/transformer_s4_on_s2/test.out.original",
+        "<REPO_ROOT>/outputs/transformer_s4_on_s4/test.out.original"
     ]
 
     print("=" * 80)

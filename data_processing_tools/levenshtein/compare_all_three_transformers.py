@@ -88,20 +88,20 @@ def main():
         {
             'name': 'transformer_s2_on_s2',
             'desc': 'S2训练 + S2测试',
-            'pred': Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s2_on_s2/test.out.original"),
-            'truth': Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original")
+            'pred': Path("<REPO_ROOT>/outputs/transformer_s2_on_s2/test.out.original"),
+            'truth': Path("<REPO_ROOT>/data/raw_s2_on_s2/test.out.original")
         },
         {
             'name': 'transformer_s4_on_s2',
             'desc': 'S4训练 + S2测试',
-            'pred': Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s2/test.out.original"),
-            'truth': Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original")
+            'pred': Path("<REPO_ROOT>/outputs/transformer_s4_on_s2/test.out.original"),
+            'truth': Path("<REPO_ROOT>/data/raw_s2_on_s2/test.out.original")
         },
         {
             'name': 'transformer_s4_on_s4',
             'desc': 'S4训练 + S4测试',
-            'pred': Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s4/test.out.original"),
-            'truth': Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s4/test.out.original.truth")
+            'pred': Path("<REPO_ROOT>/outputs/transformer_s4_on_s4/test.out.original"),
+            'truth': Path("<REPO_ROOT>/outputs/transformer_s4_on_s4/test.out.original.truth")
         }
     ]
 

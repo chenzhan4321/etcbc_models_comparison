@@ -68,7 +68,7 @@ SEED-EXCLUSION DISCLOSURE (R2-M6):
   "with exclusion" == "without exclusion" by construction.  Printed explicitly.
 
 Run:
-  cd /Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update
+  cd <REPO_ROOT>
   .venv/bin/python analysis/cluster_F/bootstrap_ci.py
 """
 
@@ -79,7 +79,7 @@ import numpy as np
 from scipy import stats
 import Levenshtein  # C extension; standard edit distance (ins/del/sub cost 1)
 
-REPO = Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update")
+REPO = Path("<REPO_ROOT>")
 OUT_DIR = REPO / "analysis" / "cluster_F"
 # Canonical ground truth used by the recorded HPC pipeline (verified to
 # reproduce levenshtein_results.json exactly). Every model is tested on S2.

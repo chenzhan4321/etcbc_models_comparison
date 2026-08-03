@@ -7,7 +7,7 @@ import urllib.request
 import os
 import sys
 
-OUT_DIR = '/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_ssi_morphology_v2'
+OUT_DIR = '<REPO_ROOT>/data/raw_ssi_morphology_v2'
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # Files to download

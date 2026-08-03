@@ -9,7 +9,7 @@
 """
 import sys, os, glob
 import numpy as np
-ROOT = "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update"
+ROOT = "<REPO_ROOT>"
 sys.path.insert(0, ROOT)
 from eval_cer import load_patterns, reconstruct_original, levenshtein, read_lines
 

@@ -34,7 +34,7 @@ from collections import Counter
 
 import Levenshtein as Lev
 
-REPO = "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update"
+REPO = "<REPO_ROOT>"
 RAW = os.path.join(REPO, "data", "raw_s4_on_s2")
 OUT = os.path.dirname(os.path.abspath(__file__))
 

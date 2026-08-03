@@ -109,25 +109,25 @@ def main():
     """主函数"""
 
     # 定义真实标签文件
-    s2_truth_file = Path("/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original")
+    s2_truth_file = Path("<REPO_ROOT>/data/raw_s2_on_s2/test.out.original")
 
     # 定义要测试的三个模型
     test_configs = [
         {
             'name': 'transformer_s2_on_s2',
-            'pred': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s2_on_s2/test.out.original",
+            'pred': "<REPO_ROOT>/outputs/transformer_s2_on_s2/test.out.original",
             'has_labels': False,  # 简单格式，没有 Predicted/Truevalue 标记
             'truth': s2_truth_file
         },
         {
             'name': 'transformer_s4_on_s2',
-            'pred': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s2/test.out.original",
+            'pred': "<REPO_ROOT>/outputs/transformer_s4_on_s2/test.out.original",
             'has_labels': True,  # 包含 Predicted/Truevalue 标记
             'truth': None  # 使用文件内的 Truevalue
         },
         {
             'name': 'transformer_s4_on_s4',
-            'pred': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s4/test.out.original",
+            'pred': "<REPO_ROOT>/outputs/transformer_s4_on_s4/test.out.original",
             'has_labels': True,  # 包含 Predicted/Truevalue 标记
             'truth': None  # 使用文件内的 Truevalue
         }

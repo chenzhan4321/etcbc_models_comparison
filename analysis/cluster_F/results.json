@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gt_path": "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original",
+    "gt_path": "<REPO_ROOT>/data/raw_s2_on_s2/test.out.original",
     "gt_total_lines": 10869,
     "gt_scored_lines": 10869,
     "n_bootstrap": 2000,

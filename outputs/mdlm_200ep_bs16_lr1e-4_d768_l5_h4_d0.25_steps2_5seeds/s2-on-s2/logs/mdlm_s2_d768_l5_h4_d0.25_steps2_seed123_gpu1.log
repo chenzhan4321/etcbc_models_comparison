@@ -13508,7 +13508,7 @@ t64(3): 10781, np.int64(4): 8879}
 📊 运行还原管道和Levenshtein评估...
    ⚠️  还原和Levenshtein评估失败: No module named 'restore_pipeline'
 Traceback (most recent call last):
-  File "/home/mail/zhanchen/etcbc_models/train.py", line 2476, in main
+  File "<REMOTE_PATH>", line 2476, in main
 ModuleNotFoundError: No module named 'restore_pipeline'
 
 💾 文件保存路径:

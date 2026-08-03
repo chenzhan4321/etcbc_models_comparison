@@ -5,7 +5,7 @@ truth, and **exactly reproduce** the recorded `levenshtein_results.json`
 (see Section 5b). Nothing is fabricated. Reproduce with:
 
 ```
-cd /Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update
+cd <REPO_ROOT>
 .venv/bin/python analysis/cluster_F/bootstrap_ci.py
 ```
 

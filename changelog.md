@@ -2,6 +2,27 @@
 
 All notable changes to this repository. Format: `[date] version: summary`.
 
+## [2026-07-25] 13.2.0: v3.1 minor-revision analyses (reviewer Q3/Q4)
+
+- **`analysis/per_word_editdistance_5seed.py`** (reviewer Q4): 5-seed version of the
+  per-error-word edit-distance table (tab:error_cost). All three models' 5-seed
+  S4-on-S2 `.out.original` predictions found locally; every cell now mean +/- sample SD
+  (MDLM 8,876+/-73 wrong words / 2.32+/-0.01 edits; enc-only 9,515+/-116 / 2.26+/-0.01;
+  enc-dec 8,955+/-351 / 2.73+/-0.08, >=4-char tail 26.5+/-1.6%). Seed-42 rows reproduce
+  the published single-run values bit-for-bit (8,807 / 9,603). Output:
+  `analysis/per_word_editdistance_5seed.json`.
+- **`analysis/block_bootstrap_v31.py`** (reviewer Q3): segment-level block bootstrap.
+  Window-continuity breaks decompose the 10,869 test lines into 120 contiguous,
+  non-overlapping segments (mean ~91 windows; coarser than verse level). Resampling
+  whole segments (2,000 reps, RNG 20260606) widens CIs ~3-4x but both headline
+  comparisons still exclude zero: MDLM-enc-only -0.145pp [-0.213,-0.077];
+  enc-only-enc-dec -0.482pp [-0.667,-0.285]. Per-model 5-seed CERs reproduce the
+  authoritative table exactly (3.383/3.528/4.010). Output:
+  `analysis/block_bootstrap_v31.json`.
+- NOTE: `models_1_revision/encdec_5seed_s4` (fresh-retrain 3.13%) remains INVALID for
+  paper numbers (re-split leakage); the canonical enc-dec 5-seed predictions are
+  `outputs/models_1_revision/encoder_decoder_5seed/` (beam=3, seeds 42/43/46/48/49).
+
 ## [2026-06-11] 13.1.0: Tidy script layout (src/) and add a results-archive index
 
 - **`src/` for evaluation & utility scripts.** Moved the eight evaluation/utility

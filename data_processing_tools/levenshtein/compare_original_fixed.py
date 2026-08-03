@@ -113,18 +113,18 @@ def main():
     test_configs = [
         {
             'name': 'transformer_s2_on_s2',
-            'pred': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s2_on_s2/test.out.original",
-            'truth': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original"
+            'pred': "<REPO_ROOT>/outputs/transformer_s2_on_s2/test.out.original",
+            'truth': "<REPO_ROOT>/data/raw_s2_on_s2/test.out.original"
         },
         {
             'name': 'transformer_s4_on_s2',
-            'pred': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s2/test.out.original",
-            'truth': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original"
+            'pred': "<REPO_ROOT>/outputs/transformer_s4_on_s2/test.out.original",
+            'truth': "<REPO_ROOT>/data/raw_s2_on_s2/test.out.original"
         },
         {
             'name': 'transformer_s4_on_s4',
-            'pred': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/outputs/transformer_s4_on_s4/test.out.original",
-            'truth': "/Users/zhanchen/Library/CloudStorage/Dropbox/Projects/etcbc_update/data/raw_s2_on_s2/test.out.original"  # 暂时用 S2，后续如果有 S4 完整测试集再更新
+            'pred': "<REPO_ROOT>/outputs/transformer_s4_on_s4/test.out.original",
+            'truth': "<REPO_ROOT>/data/raw_s2_on_s2/test.out.original"  # 暂时用 S2，后续如果有 S4 完整测试集再更新
         }
     ]
 
