@@ -1,5 +1,20 @@
 # A Structure-First Paradigm for Classical Syriac Morphological Parsing
 
+> **Reviewer quick pointers (revision v3.1).** The two analyses added in this
+> revision live here:
+> - **Q3 (segment-level block bootstrap):** `analysis/block_bootstrap_v31.py`
+>   → output `analysis/block_bootstrap_v31.json`
+> - **Q4 (Table 3, five-seed mean ± SD):** `analysis/per_word_editdistance_5seed.py`
+>   → output `analysis/per_word_editdistance_5seed.json`
+>   (note: `analysis/per_word_editdistance.py` *without* the `_5seed` suffix is the
+>   older single-seed version kept for provenance)
+> - The frozen, training-only label inventory: `data/raw_s4_on_s2/patterns.csv`
+> - Five-seed prediction archives: `outputs/` (see `outputs/models_1_revision/`)
+>
+> If directory browsing is temporarily unavailable on the anonymized mirror,
+> the files above are reachable by direct path, and the full-repo ZIP download
+> always works.
+
 Reference implementation and reproduction package for the paper
 
 > **A Structure-First Paradigm for Morphological Parsing: Synthesizing Discrete

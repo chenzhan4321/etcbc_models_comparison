@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+NOTE: legacy SINGLE-SEED analysis, kept for provenance. The five-seed version
+used for Table 3 of the revised paper (mean +/- SD over all seeds) is
+analysis/per_word_editdistance_5seed.py.
+
 Per-word CHARACTER-level edit-distance distribution among ERROR words, for the
 three models (MDLM seed42 / encoder-only seed42 / encoder-decoder s7), all
 S4-on-S2, restored .out.original.
